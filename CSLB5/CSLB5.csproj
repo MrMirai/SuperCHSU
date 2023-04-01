@@ -7,4 +7,21 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Images\ЧГУ_лого_рус_гориз_прозрачный фон.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\ЧГУ_лого_рус_гориз_прозрачный фон.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="CustomControls\" />
+    <Folder Include="Views\" />
+    <Folder Include="ViewModels\" />
+    <Folder Include="Models\" />
+    <Folder Include="Converters\" />
+    <Folder Include="Services\" />
+  </ItemGroup>
+
 </Project>
