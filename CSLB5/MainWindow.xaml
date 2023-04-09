@@ -64,11 +64,16 @@
                 <Image Margin="10" Grid.Row="0" Source="Images\ЧГУ_лого_рус_гориз_прозрачный фон.png" Stretch="Uniform"/>
                 <Grid Grid.Row="1" Margin="0">
                     <StackPanel Margin="12,10,10,0">
-                        <Button Margin="0,10,0,0" Content="Юля" Style="{StaticResource ButtonStyle}" Command="{Binding OpenObserverByLecture}"/>
-                        <Button Margin="0,10,0,0" Content="Арина" Style="{StaticResource ButtonStyle}" Command="{Binding OpenObserverByTutor}"/>
-                        <Button Margin="0,10,0,0" Content="Настя" Style="{StaticResource ButtonStyle}"/>
-                        <Button Margin="0,10,0,0" Content="Кирилл" Style="{StaticResource ButtonStyle}"/>
-                        <Button Margin="0,10,0,0" Content="Юра" Style="{StaticResource ButtonStyle}"/>
+                        <Button Margin="0,10,0,0" Content="Юля" Style="{StaticResource ButtonStyle}" 
+                                Command="{Binding OpenObserverByLecture}"/>
+                        <Button Margin="0,10,0,0" Content="Арина" Style="{StaticResource ButtonStyle}" 
+                                Command="{Binding OpenObserverByTutor}"/>
+                        <Button Margin="0,10,0,0" Content="Настя" Style="{StaticResource ButtonStyle}" 
+                                Command="{Binding OpenObserverByClassroom}"/>
+                        <Button Margin="0,10,0,0" Content="Кирилл" Style="{StaticResource ButtonStyle}" 
+                                Command="{Binding OpenObserverSettings}"/>
+                        <Button Margin="0,10,0,0" Content="Юра" Style="{StaticResource ButtonStyle}" 
+                                Command="{Binding OpenObserverGanttChart}"/>
                     </StackPanel>
                 </Grid>
             </Grid>
@@ -82,6 +87,15 @@
                     </DataTemplate>
                     <DataTemplate DataType="{x:Type vm:ReservationObserverByTutorViewModel}">
                         <views:ReservationObserverByTutorView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type vm:ReservationObserverByClassroomViewModel}">
+                        <views:ReservationObserverByClassroomView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type vm:ReservationObserverSettingsViewModel}">
+                        <views:ReservationObserverSettingsView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type vm:ReservationObserverGanttChartViewModel}">
+                        <views:ReservationObserverGanttChartView/>
                     </DataTemplate>
                 </ContentControl.Resources>
             </ContentControl>
