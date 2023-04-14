@@ -33,6 +33,15 @@ public class MainWindowViewModel : BindableBase
         set => SetProperty(ref _selectModel, value);
     }
 
+    private string _title = "SuperCHSU";
+    public string Title
+    {
+        get => _title;
+        set => SetProperty(ref _title, value);
+    }
+    
+    
+    
     public ICommand OpenObserverByLecture { get;  }
     
     private void OnOpenObserverByLecture()
