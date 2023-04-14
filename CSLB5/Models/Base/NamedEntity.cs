@@ -1,6 +1,9 @@
-﻿namespace CSLB5.Models.Base;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace CSLB5.Models.Base;
 
 public abstract class NamedEntity : Entity
 {
-    public string? Name { get; set; }
+    [Required]
+    public string Name { get; set; }
 }

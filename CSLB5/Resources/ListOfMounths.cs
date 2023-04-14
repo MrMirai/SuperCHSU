@@ -8,7 +8,7 @@ namespace CSLB5.Resources
 {
     internal class ListOfMounths
     {
-       static string[] mounths = new string[] 
+       public static string[] mounths = new string[] 
        {
            "Январь",
            "Февраль",
