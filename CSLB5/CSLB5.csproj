@@ -17,7 +17,11 @@
 
   <ItemGroup>
     <Folder Include="CustomControls\" />
+<<<<<<< Updated upstream
     <Folder Include="Converters\" />
+=======
+    <Folder Include="Models\" />
+>>>>>>> Stashed changes
     <Folder Include="Services\" />
   </ItemGroup>
 
