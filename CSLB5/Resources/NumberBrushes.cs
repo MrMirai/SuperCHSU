@@ -10,7 +10,7 @@ namespace CSLB5.Resources
     internal class Extensions
     {
 
-        public static readonly Dictionary<TypeOfLecturers, Brush> NumnerBrushes= new()
+        public static readonly Dictionary<TypeOfLecturers, Brush> NumberBrushes= new()
     {
         { TypeOfLecturers.Lecture, new SolidColorBrush(Colors.Cornsilk) },
         { TypeOfLecturers.LaboratoryWork, new SolidColorBrush(Colors.MintCream) },
