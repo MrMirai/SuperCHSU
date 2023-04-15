@@ -7,15 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
 namespace CSLB5.Converters
 {
-    internal class DateConverter: ConverterBase<DateConverter>
+    internal class WeekdayConverter : ConverterBase<WeekdayConverter>
     {
         public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return value is DateOnly date
-                ? $"Сегодня\n{date.Day} {ListOfMounths.mounths[date.Month - 1]} {date.Year}"
+                ? $"{ListOfWeekdays.weekdays[((int)date.DayOfWeek)]} / {date}"
                 : "Ошибка: неверный формат даты";
         }
     }

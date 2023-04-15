@@ -2,6 +2,7 @@
 using System.Windows.Input;
 using MVVM;
 using MVVM.Commands;
+using System;
 
 namespace CSLB5.ViewModels;
 
@@ -39,9 +40,14 @@ public class MainWindowViewModel : BindableBase
         get => _title;
         set => SetProperty(ref _title, value);
     }
-    
-    
-    
+
+    private DateOnly _value = DateOnly.FromDateTime(DateTime.Now);
+    public DateOnly Value
+    {
+        get => _value;
+        set => SetProperty(ref _value, value);
+    }
+
     public ICommand OpenObserverByLecture { get;  }
     
     private void OnOpenObserverByLecture()
