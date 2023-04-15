@@ -7,7 +7,9 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows;
+using CSLB5.Services.Registrator;
 using CSLB5.ViewModels;
+using CSLB5.ViewModels.Registrator;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -24,6 +26,8 @@ namespace CSLB5
 
         public static IHost Host => _host ??= Program.CreateHostBuilder(Environment.GetCommandLineArgs()).Build();
 
+        public static IServiceProvider Services => Host.Services;
+        
         protected override async void OnStartup(StartupEventArgs e)
         {
             IsDesignMode = false;
@@ -41,10 +45,9 @@ namespace CSLB5
             _host = null;
         }
 
-        public static void ConfigureServices(HostBuilderContext host, IServiceCollection services)
-        {
-            // services.AddSingleton<ReservationObserverByLectureViewModel>();
-        }
+        public static void ConfigureServices(HostBuilderContext host, IServiceCollection services) => services
+            .AddServices()
+            .AddViewModels();
 
         public static string? CurrentDirectory => IsDesignMode 
             ? Path.GetDirectoryName(GetSourceCodePath())

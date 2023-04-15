@@ -25,7 +25,6 @@
 
   <ItemGroup>
     <Folder Include="CustomControls\" />
-    <Folder Include="Services\" />
   </ItemGroup>
 
   <ItemGroup>
