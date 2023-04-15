@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
+using System.Diagnostics.Metrics;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows;
+using CSLB5.DataBase.Registrator;
 using CSLB5.Services.Registrator;
 using CSLB5.ViewModels;
 using CSLB5.ViewModels.Registrator;
@@ -47,7 +49,8 @@ namespace CSLB5
 
         public static void ConfigureServices(HostBuilderContext host, IServiceCollection services) => services
             .AddServices()
-            .AddViewModels();
+            .AddViewModels()
+            .AddDatabese(host.Configuration.GetSection("Database"));
 
         public static string? CurrentDirectory => IsDesignMode 
             ? Path.GetDirectoryName(GetSourceCodePath())
