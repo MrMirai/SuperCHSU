@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using CSLB5.DataBase.Entities.Base;
 
-namespace CSLB5.Models;
+namespace CSLB5.DataBase.Entities;
 
-public partial class Tutor
+[Table("Tutor")]
+public partial class Tutor : Entity
 {
-    public long TutorId { get; set; }
-
     public string Surname { get; set; } = null!;
 
     public string Name { get; set; } = null!;

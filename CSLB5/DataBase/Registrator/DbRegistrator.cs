@@ -15,6 +15,7 @@ namespace CSLB5.DataBase.Registrator
         public static IServiceCollection AddDatabese(this IServiceCollection services, IConfiguration configuration) => services.AddDbContext<Context.ScheduleContext>(opt =>
         {
             opt.UseSqlite(configuration.GetConnectionString("SQLiteDatabase"));
-        });
+        })
+            .AddRepositories();
     }
 }

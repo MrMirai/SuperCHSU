@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using CSLB5.DataBase.Entities.Base;
 
-namespace CSLB5.Models;
+namespace CSLB5.DataBase.Entities;
 
-public partial class Sсhedule
+[Table("Schedule")]
+public partial class Sсhedule : Entity
 {
     public long GroupId { get; set; }
 
@@ -15,11 +18,11 @@ public partial class Sсhedule
 
     public string Abbrevation { get; set; } = null!;
 
-    public string StartTime { get; set; } = null!;
+    public TimeOnly StartTime { get; set; }
 
-    public string EndTime { get; set; } = null!;
+    public TimeOnly EndTime { get; set; }
 
-    public string Data { get; set; } = null!;
+    public DateOnly Data { get; set; }
 
     public virtual TypesOfLecture AbbrevationNavigation { get; set; } = null!;
 
