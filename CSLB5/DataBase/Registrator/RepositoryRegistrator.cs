@@ -1,5 +1,6 @@
 ﻿using CSLB5.DataBase.Entities;
 using CSLB5.DataBase.Interfaces;
+using CSLB5.DataBase.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CSLB5.DataBase.Registrator;
@@ -12,6 +13,6 @@ public static class RepositoryRegistrator
         .AddTransient<IRepository<Lecture>, DbRepository<Lecture>>()
         .AddTransient<IRepository<Tutor>, DbRepository<Tutor>>()
         .AddTransient<IRepository<TypesOfLecture>, DbRepository<TypesOfLecture>>()
-        .AddTransient<IRepository<Sсhedule>, DbRepository<Sсhedule>>()
+        .AddTransient<IRepository<Schedule>, ScheduleRepository>()
     ;
 }

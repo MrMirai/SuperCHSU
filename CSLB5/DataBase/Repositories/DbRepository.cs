@@ -6,15 +6,15 @@ using CSLB5.DataBase.Entities.Base;
 using CSLB5.DataBase.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
-namespace CSLB5.DataBase;
+namespace CSLB5.DataBase.Repositories;
 
-internal class DbRepository<T> : IRepository<T> where T : Entity, new()
+public class DbRepository<T> : IRepository<T> where T : Entity, new()
 {
     private readonly ScheduleContext _db;
     private readonly DbSet<T> _set;
 
     public bool AutoSaveChanges { get; set; } = true;
-    
+
     public DbRepository(ScheduleContext db)
     {
         _db = db;
@@ -30,7 +30,7 @@ internal class DbRepository<T> : IRepository<T> where T : Entity, new()
         _db.Entry(item).State = EntityState.Added;
         if (AutoSaveChanges)
         {
-            _db.SaveChanges();    
+            _db.SaveChanges();
         }
 
         return item;
@@ -42,7 +42,7 @@ internal class DbRepository<T> : IRepository<T> where T : Entity, new()
         _db.Entry(item).State = EntityState.Modified;
         if (AutoSaveChanges)
         {
-            _db.SaveChanges();    
+            _db.SaveChanges();
         }
     }
 

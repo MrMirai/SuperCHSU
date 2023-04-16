@@ -5,8 +5,8 @@ using CSLB5.DataBase.Entities.Base;
 
 namespace CSLB5.DataBase.Entities;
 
-[Table("Schedule")]
-public partial class Sсhedule : Entity
+[Table("Sсhedules")]
+public partial class Schedule : Entity
 {
     public long GroupId { get; set; }
 

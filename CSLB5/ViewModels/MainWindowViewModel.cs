@@ -3,12 +3,15 @@ using System.Windows.Input;
 using MVVM;
 using MVVM.Commands;
 using System;
+using CSLB5.DataBase.Entities;
+using CSLB5.DataBase.Interfaces;
+using System.Linq;
 
 namespace CSLB5.ViewModels;
 
 public class MainWindowViewModel : BindableBase
 {
-    public MainWindowViewModel()
+    public MainWindowViewModel(IRepository<Schedule> lectureRepository)
     {
         Models = new();
         Models.Add(new ReservationObserverByLectureViewModel());
@@ -23,8 +26,13 @@ public class MainWindowViewModel : BindableBase
         OpenObserverByClassroom = new RelayCommand(OnOpenObserverByClassroom);
         OpenObserverSettings = new RelayCommand(OnOpenObserverSettings);
         OpenObserverGanttChart = new RelayCommand(OnOpenObserverGanttChart);
+        
+        _lectureRepository = lectureRepository;
+
+        var lectures = lectureRepository.Items.Take(9).ToArray();
     }
     
+    private readonly IRepository<Schedule> _lectureRepository;
     public List<BindableBase> Models { get; private set; }
 
     private BindableBase _selectModel;

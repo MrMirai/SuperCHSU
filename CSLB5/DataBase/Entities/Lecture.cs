@@ -5,7 +5,7 @@ using CSLB5.DataBase.Entities.Base;
 
 namespace CSLB5.DataBase.Entities;
 
-[Table("Lecture")]
+[Table("Lectures")]
 public partial class Lecture : Entity
 {
     public string Name { get; set; } = null!;

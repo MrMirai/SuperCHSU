@@ -22,7 +22,7 @@ public partial class ScheduleContext : DbContext
 
     public virtual DbSet<Lecture> Lectures { get; set; }
 
-    public virtual DbSet<Sсhedule> Sсhedules { get; set; }
+    public virtual DbSet<Schedule> Sсhedules { get; set; }
 
     public virtual DbSet<Tutor> Tutors { get; set; }
 
@@ -48,7 +48,7 @@ public partial class ScheduleContext : DbContext
             entity.Property(e => e.Name).HasColumnType("TEXT (45)");
         });
 
-        modelBuilder.Entity<Sсhedule>(entity =>
+        modelBuilder.Entity<Schedule>(entity =>
         {
             entity.HasNoKey();
 
