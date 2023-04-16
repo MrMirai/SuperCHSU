@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
-using CSLB5.Models.Base;
+﻿using System;
+using System.Collections.Generic;
 
 namespace CSLB5.Models;
 
-public class Lecture : NamedEntity
+public partial class Lecture
 {
-    public virtual ICollection<Schedule> Schedules { get; set; }
+    public long LectureId { get; set; }
+
+    public string Name { get; set; } = null!;
 }

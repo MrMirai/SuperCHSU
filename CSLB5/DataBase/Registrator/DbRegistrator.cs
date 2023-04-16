@@ -12,7 +12,7 @@ namespace CSLB5.DataBase.Registrator
 {
     static class DbRegistrator
     {
-        public static IServiceCollection AddDatabese(this IServiceCollection services, IConfiguration configuration) => services.AddDbContext<ScheduleDB>(opt =>
+        public static IServiceCollection AddDatabese(this IServiceCollection services, IConfiguration configuration) => services.AddDbContext<Context.ScheduleContext>(opt =>
         {
             opt.UseSqlite(configuration.GetConnectionString("SQLiteDatabase"));
         });

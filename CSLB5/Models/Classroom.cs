@@ -1,13 +1,13 @@
-﻿using System.Collections.Generic;
-using CSLB5.Models.Base;
+﻿using System;
+using System.Collections.Generic;
 
 namespace CSLB5.Models;
 
-public class Classroom : Entity
+public partial class Classroom
 {
-    public int Number { get; set; }
-    
-    public string Letter { get; set; }
-    
-    public virtual ICollection<Schedule> Schedules { get; set; }
+    public long ClassroomId { get; set; }
+
+    public long Number { get; set; }
+
+    public string? Letter { get; set; }
 }
