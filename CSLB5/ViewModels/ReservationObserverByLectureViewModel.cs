@@ -8,9 +8,11 @@ namespace CSLB5.ViewModels;
 
 public class ReservationObserverByLectureViewModel : BindableBase, IModel
 {
-    public ReservationObserverByLectureViewModel()
-    {
+    private readonly IRepository<Schedule>? _scheduleRepository;
 
+    public ReservationObserverByLectureViewModel(IRepository<Schedule>? scheduleRepository)
+    {
+        _scheduleRepository = scheduleRepository;
     }
 
     public string Name => "Предмет";

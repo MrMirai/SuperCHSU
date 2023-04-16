@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:vm="clr-namespace:CSLB5.ViewModels"
         xmlns:local="clr-namespace:CSLB5"
         xmlns:views="clr-namespace:CSLB5.Views"
@@ -39,6 +40,11 @@
             </Setter>
         </Style>
     </Window.Resources>
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding OpenObserverByLecture}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1.5*" MaxWidth="220"/>
@@ -83,21 +89,11 @@
             <Border Background="White" BorderBrush="#CFCFCF" BorderThickness="3.5,0,0,3.5" CornerRadius="5"/>
             <ContentControl Margin="8" Content="{Binding SelectModel}">
                 <ContentControl.Resources>
-                    <DataTemplate DataType="{x:Type vm:ReservationObserverByLectureViewModel}">
-                        <views:ReservationObserverByLectureView/>
-                    </DataTemplate>
-                    <DataTemplate DataType="{x:Type vm:ReservationObserverByTutorViewModel}">
-                        <views:ReservationObserverByTutorView/>
-                    </DataTemplate>
-                    <DataTemplate DataType="{x:Type vm:ReservationObserverByClassroomViewModel}">
-                        <views:ReservationObserverByClassroomView/>
-                    </DataTemplate>
-                    <DataTemplate DataType="{x:Type vm:ReservationObserverSettingsViewModel}">
-                        <views:ReservationObserverSettingsView/>
-                    </DataTemplate>
-                    <DataTemplate DataType="{x:Type vm:ReservationObserverGanttChartViewModel}">
-                        <views:ReservationObserverGanttChartView/>
-                    </DataTemplate>
+                    <ResourceDictionary>
+                        <ResourceDictionary.MergedDictionaries>
+                            <ResourceDictionary Source="../Templates/ModelMainView.xaml"/>
+                        </ResourceDictionary.MergedDictionaries>
+                    </ResourceDictionary>
                 </ContentControl.Resources>
             </ContentControl>
         </Grid>

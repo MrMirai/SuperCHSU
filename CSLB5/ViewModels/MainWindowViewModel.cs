@@ -11,14 +11,14 @@ namespace CSLB5.ViewModels;
 
 public class MainWindowViewModel : BindableBase
 {
-    public MainWindowViewModel(IRepository<Schedule> lectureRepository)
+    public MainWindowViewModel(IRepository<Schedule> scheduleRepository)
     {
         Models = new();
-        Models.Add(new ReservationObserverByLectureViewModel());
-        Models.Add(new ReservationObserverByTutorViewModel());
-        Models.Add(new ReservationObserverByClassroomViewModel());
-        Models.Add(new ReservationObserverSettingsViewModel());
-        Models.Add(new ReservationObserverGanttChartViewModel());
+        Models.Add(new ReservationObserverByLectureViewModel(_scheduleRepository));
+        Models.Add(new ReservationObserverByTutorViewModel(_scheduleRepository));
+        Models.Add(new ReservationObserverByClassroomViewModel(_scheduleRepository));
+        Models.Add(new ReservationObserverSettingsViewModel(_scheduleRepository));
+        Models.Add(new ReservationObserverGanttChartViewModel(_scheduleRepository));
         
         //SelectModel = Models[0];
         OpenObserverByLecture = new RelayCommand(OnOpenObserverByLecture);
@@ -27,12 +27,12 @@ public class MainWindowViewModel : BindableBase
         OpenObserverSettings = new RelayCommand(OnOpenObserverSettings);
         OpenObserverGanttChart = new RelayCommand(OnOpenObserverGanttChart);
         
-        _lectureRepository = lectureRepository;
+        _scheduleRepository = scheduleRepository;
 
-        var lectures = lectureRepository.Items.Take(9).ToArray();
+        var lectures = scheduleRepository.Items.Take(9).ToArray();
     }
     
-    private readonly IRepository<Schedule> _lectureRepository;
+    private readonly IRepository<Schedule> _scheduleRepository;
     public List<BindableBase> Models { get; private set; }
 
     private BindableBase _selectModel;
