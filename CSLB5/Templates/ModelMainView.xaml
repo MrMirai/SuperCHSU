@@ -3,8 +3,8 @@
                     xmlns:vm="clr-namespace:CSLB5.ViewModels"
                     xmlns:views="clr-namespace:CSLB5.Views">
     
-    <DataTemplate DataType="{x:Type vm:ReservationObserverByLectureViewModel}">
-        <views:ReservationObserverByLectureView DataContext="{Binding}"/>
+    <DataTemplate DataType="{x:Type vm:ReservationObserverByGroupViewModel}">
+        <views:ReservationObserverByGroupView DataContext="{Binding}"/>
     </DataTemplate>
     <DataTemplate DataType="{x:Type vm:ReservationObserverByTutorViewModel}">
         <views:ReservationObserverByTutorView DataContext="{Binding}"/>

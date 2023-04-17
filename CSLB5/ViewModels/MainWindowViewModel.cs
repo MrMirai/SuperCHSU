@@ -13,8 +13,9 @@ public class MainWindowViewModel : BindableBase
 {
     public MainWindowViewModel(IRepository<Schedule> scheduleRepository)
     {
+        _scheduleRepository = scheduleRepository;
         Models = new();
-        Models.Add(new ReservationObserverByLectureViewModel(_scheduleRepository));
+        Models.Add(new ReservationObserverByGroupViewModel(_scheduleRepository));
         Models.Add(new ReservationObserverByTutorViewModel(_scheduleRepository));
         Models.Add(new ReservationObserverByClassroomViewModel(_scheduleRepository));
         Models.Add(new ReservationObserverSettingsViewModel(_scheduleRepository));
@@ -27,8 +28,7 @@ public class MainWindowViewModel : BindableBase
         OpenObserverSettings = new RelayCommand(OnOpenObserverSettings);
         OpenObserverGanttChart = new RelayCommand(OnOpenObserverGanttChart);
         
-        _scheduleRepository = scheduleRepository;
-
+        
         var lectures = scheduleRepository.Items.Take(9).ToArray();
     }
     
