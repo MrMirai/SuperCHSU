@@ -49,12 +49,6 @@ public class MainWindowViewModel : BindableBase
         set => SetProperty(ref _title, value);
     }
 
-    private DateOnly _value = DateOnly.FromDateTime(DateTime.Now);
-    public DateOnly Value
-    {
-        get => _value;
-        set => SetProperty(ref _value, value);
-    }
 
     public ICommand OpenObserverByLecture { get;  }
     

@@ -76,12 +76,12 @@
             <RowDefinition Height="1.5*" MaxHeight="47"/>
             <RowDefinition Height="5*"/>
         </Grid.RowDefinitions>
-        <Border Grid.Row="0" Margin="4" Background="White" BorderBrush="#CFCFCF" CornerRadius="17">
+        <Border Grid.Row="0" Margin="8,8,8,0" Background="White" BorderBrush="#CFCFCF" CornerRadius="17">
             <Border.Effect>
                 <DropShadowEffect Color="#808080" Opacity="0.3"/>
             </Border.Effect>
         </Border>
-        <StackPanel Margin="5,0,0,0" Orientation="Horizontal" Grid.Row="0">
+        <StackPanel Margin="8,8,0,0" Orientation="Horizontal" Grid.Row="0">
             <Button Content="Юля" Style="{StaticResource ButtonStyle}" 
                             Command="{Binding OpenObserverByLecture}"/>
             <Button Content="Арина" Style="{StaticResource ButtonStyle}" 
@@ -91,7 +91,7 @@
             <Button Content="Юра" Style="{StaticResource ButtonStyle}" 
                             Command="{Binding OpenObserverGanttChart}"/>
         </StackPanel>
-        <StackPanel Margin="0,0,5,0" Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Right">
+        <StackPanel Margin="0,8,8,0" Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Right">
             <Button Content="Кирилл" Style="{StaticResource ButtonStyle}" 
                             Command="{Binding OpenObserverSettings}"/>
         </StackPanel>
