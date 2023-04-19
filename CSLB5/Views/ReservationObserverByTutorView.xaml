@@ -69,7 +69,7 @@
                 <GradientStop Color="#FFC4E0FC" Offset="1.0"/>
             </LinearGradientBrush>
             <SolidColorBrush x:Key="ComboBox.Pressed.Border" Color="#FF569DE5"/>
-            <SolidColorBrush x:Key="ComboBox.Pressed.Glyph" Color="#FF000000"/>
+            <SolidColorBrush x:Key="ComboBox.Pressed.Glyph" Color="#E31E24"/>
             <SolidColorBrush x:Key="ComboBox.Pressed.Editable.Background" Color="#FFFFFFFF"/>
             <SolidColorBrush x:Key="ComboBox.Pressed.Editable.Border" Color="#FF569DE5"/>
             <LinearGradientBrush x:Key="ComboBox.Pressed.Editable.Button.Background" EndPoint="0,1" StartPoint="0,0">
@@ -156,6 +156,38 @@
                                     <Setter Property="Background" TargetName="splitBorder" Value="{StaticResource ComboBox.Pressed.Editable.Button.Background}"/>
                                     <Setter Property="BorderBrush" TargetName="splitBorder" Value="{StaticResource ComboBox.Pressed.Editable.Button.Border}"/>
                                 </MultiDataTrigger>
+                                <MultiTrigger>
+                                    <MultiTrigger.Conditions>
+                                        <Condition Property="IsChecked" Value="True"/>
+                                    </MultiTrigger.Conditions>
+                                    <MultiTrigger.EnterActions>
+                                        <BeginStoryboard x:Name="RotateStoryboard">
+                                            <Storyboard AccelerationRatio="1">
+                                                <DoubleAnimation
+                                                    
+                                                    AutoReverse="False"
+                                                    To="180"
+                                                    Storyboard.TargetName="arrow"
+                                                    Storyboard.TargetProperty="RenderTransform.Angle"
+                                                    Duration="0:0:0.4"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </MultiTrigger.EnterActions>
+                                    <MultiTrigger.ExitActions>
+                                        <!-- <StopStoryboard BeginStoryboardName="RotateStoryboard"/> -->
+                                        <BeginStoryboard x:Name="RotateStoryboarddd">
+                                            <Storyboard AccelerationRatio="1">
+                                                <DoubleAnimation
+                                                    
+                                                    AutoReverse="False"
+                                                    To="0"
+                                                    Storyboard.TargetName="arrow"
+                                                    Storyboard.TargetProperty="RenderTransform.Angle"
+                                                    Duration="0:0:0.4"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </MultiTrigger.ExitActions>
+                                </MultiTrigger>
                                 <Trigger Property="IsEnabled" Value="false">
                                     <Setter Property="Fill" TargetName="arrow" Value="{StaticResource ComboBox.Disabled.Glyph}"/>
                                     <Trigger.EnterActions>
@@ -249,12 +281,12 @@
                         <ColumnDefinition MinWidth="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}" Width="0"/>
                     </Grid.ColumnDefinitions>
                     <Popup x:Name="PART_Popup" AllowsTransparency="true" Grid.ColumnSpan="2" IsOpen="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Margin="1" Placement="Bottom" PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}">
-                        <theme:SystemDropShadowChrome x:Name="shadow" Color="Transparent" MinWidth="{Binding ActualWidth, ElementName=templateRoot}" MaxHeight="{TemplateBinding MaxDropDownHeight}">
-                            <Border x:Name="dropDownBorder" Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}" BorderBrush="{DynamicResource {x:Static SystemColors.WindowFrameBrushKey}}" BorderThickness="1">
+                        <theme:SystemDropShadowChrome x:Name="shadow"  Color="Transparent" MinWidth="{Binding ActualWidth, ElementName=templateRoot}" MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                            <Border x:Name="dropDownBorder" Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}" CornerRadius="0 0 7 7" BorderBrush="#E31E24" BorderThickness="1">
                                 <ScrollViewer x:Name="DropDownScrollViewer">
                                     <Grid x:Name="grid" RenderOptions.ClearTypeHint="Enabled">
                                         <Canvas x:Name="canvas" HorizontalAlignment="Left" Height="0" VerticalAlignment="Top" Width="0">
-                                            <Rectangle x:Name="opaqueRect" Fill="{Binding Background, ElementName=dropDownBorder}" Height="{Binding ActualHeight, ElementName=dropDownBorder}" Width="{Binding ActualWidth, ElementName=dropDownBorder}"/>
+                                            <Rectangle x:Name="opaqueRect" RadiusX="40" RadiusY="40" Fill="{Binding Background, ElementName=dropDownBorder}" Height="{Binding ActualHeight, ElementName=dropDownBorder}" Width="{Binding ActualWidth, ElementName=dropDownBorder}"/>
                                         </Canvas>
                                         <ItemsPresenter x:Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Contained" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
                                     </Grid>
@@ -332,7 +364,12 @@
                 <Run FontSize="13" FontFamily="Serif" FontWeight="DemiBold" Text="{Binding Value, Converter={cv:DateConverter}}"/>
             </TextBlock>
             <ComboBox Margin="3 13 10 0" Height="25" Style="{DynamicResource MyComboBox}" >
-                
+                <ComboBoxItem>
+                    Item1
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    Item 2
+                </ComboBoxItem>
             </ComboBox>
         </StackPanel>
     </Grid>
