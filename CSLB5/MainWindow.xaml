@@ -3,10 +3,108 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:vm="clr-namespace:CSLB5.ViewModels"
         xmlns:local="clr-namespace:CSLB5"
+        xmlns:views="clr-namespace:CSLB5.Views"
+        xmlns:cv="clr-namespace:CSLB5.Converters"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        DataContext="{Binding MainWindowModel, Source={StaticResource Locator}}"
+        Title="{Binding Title}" Height="450" Width="800">
+    <Window.Resources>
+        <Style TargetType="Button" x:Key="ButtonStyle">
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="FontWeight" Value="Regular"/>
+            <Setter Property="FontFamily" Value="Arial"/>
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}"
+                                CornerRadius="12" BorderBrush="#E31E24" BorderThickness="1" x:Name="bd">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                              Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" 
+                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" RecognizesAccessKey="True" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <!--<Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="bd" Property="Background" Value="#E31E24"/>
+                                <Setter Property="Foreground" Value="White" />
+                                <Setter Property="Cursor" Value="Hand" />
+                            </Trigger>-->
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsMouseOver" Value="True"/>
+                                </MultiTrigger.Conditions>
+                                <MultiTrigger.ExitActions>
+                                    <StopStoryboard BeginStoryboardName="FlashingStoryboard"/>
+                                </MultiTrigger.ExitActions>
+                                <MultiTrigger.EnterActions>
+                                    <BeginStoryboard x:Name="FlashingStoryboard">
+                                        <Storyboard AccelerationRatio="1">
+                                            <ColorAnimation
+                                                AutoReverse="False"
+                                                Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)"
+                                                To="#E31E24"
+                                                Duration="0:0:0.13"/>
+                                            <ColorAnimation
+                                                AutoReverse="False"
+                                                Storyboard.TargetProperty="(Button.Foreground).(SolidColorBrush.Color)"
+                                                To="White"
+                                                Duration="0:0:0.13"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </MultiTrigger.EnterActions>
+                            </MultiTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <!--<i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding OpenObserverByLecture}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>-->
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1.5*" MaxHeight="47"/>
+            <RowDefinition Height="5*"/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0" Margin="8,8,8,0" Background="White" BorderBrush="#CFCFCF" CornerRadius="17">
+            <Border.Effect>
+                <DropShadowEffect Color="#808080" Opacity="0.3"/>
+            </Border.Effect>
+        </Border>
+        <StackPanel Margin="8,8,0,0" Orientation="Horizontal" Grid.Row="0">
+            <Button Content="Юля" Style="{StaticResource ButtonStyle}" 
+                            Command="{Binding OpenObserverByLecture}"/>
+            <Button Content="Арина" Style="{StaticResource ButtonStyle}" 
+                            Command="{Binding OpenObserverByTutor}"/>
+            <Button Content="Настя" Style="{StaticResource ButtonStyle}" 
+                            Command="{Binding OpenObserverByClassroom}"/>
+            <Button Content="Юра" Style="{StaticResource ButtonStyle}" 
+                            Command="{Binding OpenObserverGanttChart}"/>
+        </StackPanel>
+        <StackPanel Margin="0,8,8,0" Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Right">
+            <Button Content="Кирилл" Style="{StaticResource ButtonStyle}" 
+                            Command="{Binding OpenObserverSettings}"/>
+        </StackPanel>
+        <ContentControl Grid.Row="1" BorderBrush="Transparent" Margin="8" Content="{Binding SelectModel}">
+            <ContentControl.Resources>
+                <ResourceDictionary>
+                    <ResourceDictionary.MergedDictionaries>
+                        <ResourceDictionary Source="../Templates/ModelMainView.xaml"/>
+                    </ResourceDictionary.MergedDictionaries>
+                </ResourceDictionary>
+            </ContentControl.Resources>
+        </ContentControl>
 
     </Grid>
+
 </Window>
