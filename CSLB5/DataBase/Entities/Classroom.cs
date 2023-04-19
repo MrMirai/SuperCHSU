@@ -8,7 +8,7 @@ namespace CSLB5.DataBase.Entities;
 [Table("Classrooms")]
 public partial class Classroom : Entity
 {
-
+    
     public long Number { get; set; }
 
     public string? Letter { get; set; }

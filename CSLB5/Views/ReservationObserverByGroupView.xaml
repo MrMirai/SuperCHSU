@@ -6,19 +6,34 @@
              xmlns:local="clr-namespace:CSLB5.Views"
              xmlns:vm="clr-namespace:CSLB5.ViewModels"
              xmlns:cv="clr-namespace:CSLB5.Converters"
+             xmlns:custom="clr-namespace:CSLB5.CustomControls"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance {x:Type vm:ReservationObserverByGroupViewModel}}"
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <DataGrid ItemsSource="{Binding Data}" AutoGenerateColumns="False">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="StartTime" Binding="{Binding StartTime}"/>
-                <DataGridTextColumn Header="EndTime" Binding="{Binding EndTime}"/>
-                <DataGridTextColumn Header="Group" Binding="{Binding Group.GroupNumber}"/>
-                <DataGridTextColumn Header="Discipline" Binding="{Binding Lecture.Name}"/>
-                <DataGridTextColumn Header="Tutor" Binding="{Binding Tutor, Converter={cv:TutorConverter}}"/>
-            </DataGrid.Columns>
-        </DataGrid>
+        <!-- <DataGrid ItemsSource="{Binding Data}" AutoGenerateColumns="False"> -->
+        <!--     <DataGrid.Columns> -->
+        <!--         <DataGridTextColumn Header="StartTime" Binding="{Binding StartTime}"/> -->
+        <!--         <DataGridTextColumn Header="EndTime" Binding="{Binding EndTime}"/> -->
+        <!--         <DataGridTextColumn Header="Group" Binding="{Binding Group.GroupNumber}"/> -->
+        <!--         <DataGridTextColumn Header="Discipline" Binding="{Binding Lecture.Name}"/> -->
+        <!--         <DataGridTextColumn Header="Tutor" Binding="{Binding Tutor, Converter={cv:TutorConverter}}"/> -->
+        <!--     </DataGrid.Columns> -->
+        <!-- </DataGrid> -->
+        <ListView >
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="День">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <custom:DayContentControl></custom:DayContentControl>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <custom:DayContentControl Items="{Binding Data}"></custom:DayContentControl>
         <Label Content="Группа" HorizontalAlignment="Center" VerticalAlignment="Center"/>
     </Grid>
 </UserControl>

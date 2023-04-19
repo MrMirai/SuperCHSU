@@ -15,7 +15,8 @@ public class ReservationObserverByGroupViewModel : BindableBase, IModel
     public ReservationObserverByGroupViewModel(IRepository<Schedule> scheduleRepository)
     {
         _scheduleRepository = scheduleRepository;
-        foreach (var item in _scheduleRepository.Items.ToArray())
+        var collection = _scheduleRepository.Items.Where(x => x.Lecture.Name == "Java");
+        foreach (var item in collection)
         {
             Data.Add(item);
         }

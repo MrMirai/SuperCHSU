@@ -24,10 +24,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="CustomControls\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\MVVM\MVVM.csproj" />
   </ItemGroup>
 

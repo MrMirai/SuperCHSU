@@ -1,0 +1,23 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:CSLB5.CustomControls"
+                    xmlns:converters="clr-namespace:CSLB5.Converters">
+    <Style TargetType="local:DayContentControl">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:DayContentControl">
+                    <DataGrid ItemsSource="{TemplateBinding Items}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="StartTime" Binding="{Binding StartTime}"/>
+                            <DataGridTextColumn Header="EndTime" Binding="{Binding EndTime}"/>
+                            <DataGridTextColumn Header="Group" Binding="{Binding Group.GroupNumber}"/>
+                            <DataGridTextColumn Header="Discipline" Binding="{Binding Lecture.Name}"/>
+                            <DataGridTextColumn Header="Tutor" Binding="{Binding Tutor, Converter={converters:TutorConverter}}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+</ResourceDictionary>
