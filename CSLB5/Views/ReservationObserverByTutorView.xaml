@@ -14,56 +14,8 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../Images/chsu.xaml"/>
+                <ResourceDictionary Source="../Themes/ButtonStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-            <Style TargetType="Button" x:Key="ButtonStyle">
-                <Setter Property="FontSize" Value="12"/>
-                <Setter Property="FontWeight" Value="Regular"/>
-                <Setter Property="FontFamily" Value="Arial"/>
-                <Setter Property="Height" Value="25"/>
-                <Setter Property="Background" Value="Transparent"/>
-                <Setter Property="Foreground" Value="Black"/>
-                <Setter Property="Width" Value="Auto"/>
-                <Setter Property="Padding" Value="7 0 7 0"/>
-                <Setter Property="Margin" Value="2"/>
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type Button}">
-                            <Border Background="{TemplateBinding Background}"
-                                CornerRadius="12" BorderBrush="#E31E24" BorderThickness="1" x:Name="bd">
-                                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
-                                              Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" 
-                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" RecognizesAccessKey="True" />
-                            </Border>
-                            <ControlTemplate.Triggers>
-                                <MultiTrigger>
-                                    <MultiTrigger.Conditions>
-                                        <Condition Property="IsMouseOver" Value="True"/>
-                                    </MultiTrigger.Conditions>
-                                    <MultiTrigger.ExitActions>
-                                        <StopStoryboard BeginStoryboardName="FlashingStoryboard"/>
-                                    </MultiTrigger.ExitActions>
-                                    <MultiTrigger.EnterActions>
-                                        <BeginStoryboard x:Name="FlashingStoryboard">
-                                            <Storyboard AccelerationRatio="1">
-                                                <ColorAnimation
-                                                AutoReverse="False"
-                                                Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)"
-                                                To="#E31E24"
-                                                Duration="0:0:0.13"/>
-                                                <ColorAnimation
-                                                AutoReverse="False"
-                                                Storyboard.TargetProperty="(Button.Foreground).(SolidColorBrush.Color)"
-                                                To="White"
-                                                Duration="0:0:0.13"/>
-                                            </Storyboard>
-                                        </BeginStoryboard>
-                                    </MultiTrigger.EnterActions>
-                                </MultiTrigger>
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
             <Style x:Key="FocusVisual">
                 <Setter Property="Control.Template">
                     <Setter.Value>
@@ -418,9 +370,9 @@
                 </ComboBox.ItemTemplate>
             </ComboBox>
             <StackPanel Margin="2,8,0,0" Orientation="Horizontal" Grid.Row="0">
-                <Button Style="{StaticResource ButtonStyle}" Content="День"/>
-                <Button Style="{StaticResource ButtonStyle}" Content="Неделя"/>
-                <Button Style="{StaticResource ButtonStyle}" Content="Диапазон"/>
+                <Button Style="{StaticResource ButtonStyle}" FontSize="12" Margin="2" Padding="7 0 7 0" Width="Auto" Content="День"/>
+                <Button Style="{StaticResource ButtonStyle}" FontSize="12" Margin="2" Padding="7 0 7 0" Width="Auto" Content="Неделя"/>
+                <Button Style="{StaticResource ButtonStyle}" FontSize="12" Margin="2" Padding="7 0 7 0" Width="Auto" Content="Диапазон"/>
             </StackPanel>
         </StackPanel>
     </Grid>

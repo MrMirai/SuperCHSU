@@ -12,59 +12,7 @@
         DataContext="{Binding MainWindowModel, Source={StaticResource Locator}}"
         Title="{Binding Title}" Height="450" Width="800">
     <Window.Resources>
-        <Style TargetType="Button" x:Key="ButtonStyle">
-            <Setter Property="FontSize" Value="15"/>
-            <Setter Property="FontWeight" Value="Regular"/>
-            <Setter Property="FontFamily" Value="Arial"/>
-            <Setter Property="Height" Value="25"/>
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="Foreground" Value="Black"/>
-            <Setter Property="Width" Value="100"/>
-            <Setter Property="Margin" Value="5"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <Border Background="{TemplateBinding Background}"
-                                CornerRadius="12" BorderBrush="#E31E24" BorderThickness="1" x:Name="bd">
-                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
-                                              Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" 
-                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" RecognizesAccessKey="True" />
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <!--<Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="bd" Property="Background" Value="#E31E24"/>
-                                <Setter Property="Foreground" Value="White" />
-                                <Setter Property="Cursor" Value="Hand" />
-                            </Trigger>-->
-                            <MultiTrigger>
-                                <MultiTrigger.Conditions>
-                                    <Condition Property="IsMouseOver" Value="True"/>
-                                </MultiTrigger.Conditions>
-                                <MultiTrigger.ExitActions>
-                                    <StopStoryboard BeginStoryboardName="FlashingStoryboard"/>
-                                </MultiTrigger.ExitActions>
-                                <MultiTrigger.EnterActions>
-                                    <BeginStoryboard x:Name="FlashingStoryboard">
-                                        <Storyboard AccelerationRatio="1">
-                                            <ColorAnimation
-                                                AutoReverse="False"
-                                                Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)"
-                                                To="#E31E24"
-                                                Duration="0:0:0.13"/>
-                                            <ColorAnimation
-                                                AutoReverse="False"
-                                                Storyboard.TargetProperty="(Button.Foreground).(SolidColorBrush.Color)"
-                                                To="White"
-                                                Duration="0:0:0.13"/>
-                                        </Storyboard>
-                                    </BeginStoryboard>
-                                </MultiTrigger.EnterActions>
-                            </MultiTrigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
+        <ResourceDictionary Source="Themes/ButtonStyle.xaml"/>
     </Window.Resources>
     <!--<i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
@@ -82,7 +30,7 @@
             </Border.Effect>
         </Border>
         <StackPanel Margin="8,8,0,0" Orientation="Horizontal" Grid.Row="0">
-            <Button Content="Юля" Style="{StaticResource ButtonStyle}" 
+            <Button Content="Юля" Style="{StaticResource ButtonStyle}"
                             Command="{Binding OpenObserverByLecture}"/>
             <Button Content="Арина" Style="{StaticResource ButtonStyle}" 
                             Command="{Binding OpenObserverByTutor}"/>

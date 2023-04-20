@@ -8,8 +8,8 @@
          <vm:ViewModelLocator x:Key="Locator"/>
          <ResourceDictionary x:Key="Chsu">
              <ResourceDictionary.MergedDictionaries>
-                 <ResourceDictionary x:Name="ChsuLogo" Source="Images/chsu.xaml"/>
-             </ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary x:Name="ChsuLogo" Source="Images/chsu.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
          </ResourceDictionary>
     </Application.Resources>
 </Application>
