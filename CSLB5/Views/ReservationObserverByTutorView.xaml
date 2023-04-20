@@ -94,7 +94,7 @@
                         <ControlTemplate TargetType="{x:Type ToggleButton}">
                             <Border x:Name="templateRoot" Background="White" CornerRadius="12" BorderBrush="{StaticResource ComboBox.Static.Border}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
                                 <Border x:Name="splitBorder" Margin ="0 0 5 0" BorderBrush="Transparent" BorderThickness="1" HorizontalAlignment="Right" SnapsToDevicePixels="true" Width="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}">
-                                    <Path x:Name="arrow" Data="F1 M 0,0 L 2.667,2.66665 L 5.3334,0 L 5.3334,-1.78168 L 2.6667,0.88501 L0,-1.78168 L0,0 Z" Fill="{StaticResource ComboBox.Static.Glyph}" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center">
+                                    <Path x:Name="arrow" Data="F1 M 0,0 L 2.667,2.66665 L 5.3334,0 L 5.3334,-1.78168 L 2.6667,0.88501 L0,-1.78168 L0,0 Z" Fill="{StaticResource ComboBox.Static.Glyph}" HorizontalAlignment="Center" RenderTransformOrigin="0.5 0.5" Margin="0" VerticalAlignment="Center">
                                         <Path.RenderTransform>
                                             <RotateTransform x:Name="AnimatedRotateTransform" Angle="0" />
                                         </Path.RenderTransform>
@@ -164,12 +164,11 @@
                                         <BeginStoryboard x:Name="RotateStoryboard">
                                             <Storyboard AccelerationRatio="1">
                                                 <DoubleAnimation
-                                                    
                                                     AutoReverse="False"
                                                     To="180"
                                                     Storyboard.TargetName="arrow"
                                                     Storyboard.TargetProperty="RenderTransform.Angle"
-                                                    Duration="0:0:0.4"/>
+                                                    Duration="0:0:0.3"/>
                                             </Storyboard>
                                         </BeginStoryboard>
                                     </MultiTrigger.EnterActions>
@@ -178,12 +177,11 @@
                                         <BeginStoryboard x:Name="RotateStoryboarddd">
                                             <Storyboard AccelerationRatio="1">
                                                 <DoubleAnimation
-                                                    
                                                     AutoReverse="False"
                                                     To="0"
                                                     Storyboard.TargetName="arrow"
                                                     Storyboard.TargetProperty="RenderTransform.Angle"
-                                                    Duration="0:0:0.4"/>
+                                                    Duration="0:0:0.3"/>
                                             </Storyboard>
                                         </BeginStoryboard>
                                     </MultiTrigger.ExitActions>
@@ -298,10 +296,10 @@
                     <ContentPresenter x:Name="contentPresenter" ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" Content="{TemplateBinding SelectionBoxItem}" ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" IsHitTestVisible="false" Margin="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                 </Grid>
                 <ControlTemplate.Triggers>
-                    <Trigger Property="HasDropShadow" SourceName="PART_Popup" Value="true">
-                        <Setter Property="Margin" TargetName="shadow" Value="0,0,5,5"/>
-                        <Setter Property="Color" TargetName="shadow" Value="#71000000"/>
-                    </Trigger>
+                    <!-- <Trigger Property="HasDropShadow" SourceName="PART_Popup" Value="true"> -->
+                    <!--     <Setter Property="Margin" TargetName="shadow" Value="0,0,5,5"/> -->
+                    <!--     <Setter Property="Color" TargetName="shadow" Value="#71000000"/> -->
+                    <!-- </Trigger> -->
                     <Trigger Property="HasItems" Value="false">
                         <Setter Property="Height" TargetName="dropDownBorder" Value="95"/>
                     </Trigger>
@@ -363,13 +361,12 @@
                 <LineBreak/>
                 <Run FontSize="13" FontFamily="Serif" FontWeight="DemiBold" Text="{Binding Value, Converter={cv:DateConverter}}"/>
             </TextBlock>
-            <ComboBox Margin="3 13 10 0" Height="25" Style="{DynamicResource MyComboBox}" >
-                <ComboBoxItem>
-                    Item1
-                </ComboBoxItem>
-                <ComboBoxItem>
-                    Item 2
-                </ComboBoxItem>
+            <ComboBox Margin="3 13 10 0" Height="25" ItemsSource="{Binding TutorCollection}"  Style="{DynamicResource MyComboBox}" >
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Converter={cv:TutorConverter}}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
             </ComboBox>
         </StackPanel>
     </Grid>

@@ -11,12 +11,13 @@ namespace CSLB5.ViewModels;
 
 public class MainWindowViewModel : BindableBase
 {
-    public MainWindowViewModel(IRepository<Schedule> scheduleRepository)
+    public MainWindowViewModel(IRepository<Schedule> scheduleRepository, IRepository<Tutor> tutorRepository)
     {
         _scheduleRepository = scheduleRepository;
+        _tutorRepository = tutorRepository;
         Models = new();
         Models.Add(new ReservationObserverByGroupViewModel(_scheduleRepository));
-        Models.Add(new ReservationObserverByTutorViewModel(_scheduleRepository));
+        Models.Add(new ReservationObserverByTutorViewModel(_scheduleRepository, _tutorRepository));
         Models.Add(new ReservationObserverByClassroomViewModel(_scheduleRepository));
         Models.Add(new ReservationObserverSettingsViewModel(_scheduleRepository));
         Models.Add(new ReservationObserverGanttChartViewModel(_scheduleRepository));
@@ -33,6 +34,7 @@ public class MainWindowViewModel : BindableBase
     }
     
     private readonly IRepository<Schedule> _scheduleRepository;
+    private readonly IRepository<Tutor> _tutorRepository;
     public List<BindableBase> Models { get; private set; }
 
     private BindableBase _selectModel;
