@@ -1,0 +1,5 @@
+
+‹csharpsquid:S1450$"bRemove the field '_scheduleRepository' and declare it as a local variable in the relevant methods.(óŒ˜ÿÿÿÿÿ8ÃÃ®àù0
+ƒcsharpsquid:S1450%"_Remove the field '_tutorRepository' and declare it as a local variable in the relevant methods.(¤ï³©8ˆ±Ààù0
+Ncsharpsquid:S1481!",Remove the unused local variable 'lectures'.(«µƒ²şÿÿÿÿ
+;csharpsquid:S125"Remove this commented out code.(ÏÜõ‘

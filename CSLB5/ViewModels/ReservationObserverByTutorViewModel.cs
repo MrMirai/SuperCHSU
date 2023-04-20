@@ -4,6 +4,9 @@ using CSLB5.ViewModels.Base;
 using MVVM;
 using System;
 using System.Collections.ObjectModel;
+using System.Windows.Controls;
+using System.Windows.Input;
+using MVVM.Commands;
 
 namespace CSLB5.ViewModels;
 
@@ -14,6 +17,8 @@ public class ReservationObserverByTutorViewModel : BindableBase, IModel
 
     public ReservationObserverByTutorViewModel(IRepository<Schedule>? scheduleRepository, IRepository<Tutor> tutorRepository)
     {
+        SetSelectModeToSingle = new RelayCommand(OnSetSelectModeToSingle);
+        SetSelectModeToRange = new RelayCommand(OnSetSelectModeToRange);
         ScheduleRepository = scheduleRepository;
         TutorRepository = tutorRepository;
         foreach (var item in TutorRepository.Items)
@@ -36,6 +41,29 @@ public class ReservationObserverByTutorViewModel : BindableBase, IModel
         get => _value;
         set => SetProperty(ref _value, value);
     }
+    
+    private CalendarSelectionMode _selectionMode;
+
+    public CalendarSelectionMode SelectionMode
+    {
+        get => _selectionMode;
+        set => SetProperty(ref _selectionMode, value);
+    }
+    
+    public ICommand SetSelectModeToSingle { get; set; }
+
+    private void OnSetSelectModeToSingle()
+    {
+        _selectionMode = CalendarSelectionMode.SingleDate;
+    }
+    
+    public ICommand SetSelectModeToRange { get; set; }
+
+    private void OnSetSelectModeToRange()
+    {
+        _selectionMode = CalendarSelectionMode.SingleRange;
+    }
+    
     public string Name => "Преподаватель";
 
 }
