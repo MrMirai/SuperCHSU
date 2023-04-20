@@ -15,6 +15,55 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../Images/chsu.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="Button" x:Key="ButtonStyle">
+                <Setter Property="FontSize" Value="12"/>
+                <Setter Property="FontWeight" Value="Regular"/>
+                <Setter Property="FontFamily" Value="Arial"/>
+                <Setter Property="Height" Value="25"/>
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="Foreground" Value="Black"/>
+                <Setter Property="Width" Value="Auto"/>
+                <Setter Property="Padding" Value="7 0 7 0"/>
+                <Setter Property="Margin" Value="2"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border Background="{TemplateBinding Background}"
+                                CornerRadius="12" BorderBrush="#E31E24" BorderThickness="1" x:Name="bd">
+                                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                              Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" 
+                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" RecognizesAccessKey="True" />
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <MultiTrigger>
+                                    <MultiTrigger.Conditions>
+                                        <Condition Property="IsMouseOver" Value="True"/>
+                                    </MultiTrigger.Conditions>
+                                    <MultiTrigger.ExitActions>
+                                        <StopStoryboard BeginStoryboardName="FlashingStoryboard"/>
+                                    </MultiTrigger.ExitActions>
+                                    <MultiTrigger.EnterActions>
+                                        <BeginStoryboard x:Name="FlashingStoryboard">
+                                            <Storyboard AccelerationRatio="1">
+                                                <ColorAnimation
+                                                AutoReverse="False"
+                                                Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)"
+                                                To="#E31E24"
+                                                Duration="0:0:0.13"/>
+                                                <ColorAnimation
+                                                AutoReverse="False"
+                                                Storyboard.TargetProperty="(Button.Foreground).(SolidColorBrush.Color)"
+                                                To="White"
+                                                Duration="0:0:0.13"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </MultiTrigger.EnterActions>
+                                </MultiTrigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
             <Style x:Key="FocusVisual">
                 <Setter Property="Control.Template">
                     <Setter.Value>
@@ -45,8 +94,8 @@
                 <GradientStop Color="#FFF0F0F0" Offset="0.0"/>
                 <GradientStop Color="#FFE5E5E5" Offset="1.0"/>
             </LinearGradientBrush>
-            <SolidColorBrush x:Key="ComboBox.Static.Border" Color="#E31E24"/>
-            <SolidColorBrush x:Key="ComboBox.Static.Glyph" Color="#E31E24"/>
+            <SolidColorBrush x:Key="ComboBox.Static.Border" Color="#808080"/>
+            <SolidColorBrush x:Key="ComboBox.Static.Glyph" Color="#808080"/>
             <SolidColorBrush x:Key="ComboBox.Static.Editable.Background" Color="#FFFFFFFF"/>
             <SolidColorBrush x:Key="ComboBox.Static.Editable.Border" Color="#FFABADB3"/>
             <SolidColorBrush x:Key="ComboBox.Static.Editable.Button.Background" Color="Transparent"/>
@@ -115,7 +164,7 @@
                                     <Setter Property="BorderBrush" TargetName="splitBorder" Value="{StaticResource ComboBox.Static.Editable.Button.Border}"/>
                                 </MultiDataTrigger>
                                 <Trigger Property="IsMouseOver" Value="true">
-                                    <Setter Property="Fill" TargetName="arrow" Value="#E31E24"/>
+                                    <Setter Property="Fill" TargetName="arrow" Value="#808080"/>
                                 </Trigger>
                                 <MultiDataTrigger>
                                     <MultiDataTrigger.Conditions>
@@ -123,7 +172,7 @@
                                         <Condition Binding="{Binding IsEditable, RelativeSource={RelativeSource AncestorType={x:Type ComboBox}}}" Value="false"/>
                                     </MultiDataTrigger.Conditions>
                                     <Setter Property="Background" TargetName="templateRoot" Value="White"/>
-                                    <Setter Property="BorderBrush" TargetName="templateRoot" Value="#E31E24"/>
+                                    <Setter Property="BorderBrush" TargetName="templateRoot" Value="#808080"/>
                                 </MultiDataTrigger>
                                 <MultiDataTrigger>
                                     <MultiDataTrigger.Conditions>
@@ -136,7 +185,7 @@
                                     <Setter Property="BorderBrush" TargetName="splitBorder" Value="{StaticResource ComboBox.MouseOver.Editable.Button.Border}"/>
                                 </MultiDataTrigger>
                                 <Trigger Property="IsPressed" Value="true">
-                                    <Setter Property="Fill" TargetName="arrow" Value="#E31E24"/>
+                                    <Setter Property="Fill" TargetName="arrow" Value="#808080"/>
                                 </Trigger>
                                 <MultiDataTrigger>
                                     <MultiDataTrigger.Conditions>
@@ -144,7 +193,7 @@
                                         <Condition Binding="{Binding IsEditable, RelativeSource={RelativeSource AncestorType={x:Type ComboBox}}}" Value="false"/>
                                     </MultiDataTrigger.Conditions>
                                     <Setter Property="Background" TargetName="templateRoot" Value="White"/>
-                                    <Setter Property="BorderBrush" TargetName="templateRoot" Value="#E31E24"/>
+                                    <Setter Property="BorderBrush" TargetName="templateRoot" Value="#808080"/>
                                 </MultiDataTrigger>
                                 <MultiDataTrigger>
                                     <MultiDataTrigger.Conditions>
@@ -280,7 +329,7 @@
                     </Grid.ColumnDefinitions>
                     <Popup x:Name="PART_Popup" AllowsTransparency="true" Grid.ColumnSpan="2" IsOpen="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Margin="1" Placement="Bottom" PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}">
                         <theme:SystemDropShadowChrome x:Name="shadow"  Color="Transparent" MinWidth="{Binding ActualWidth, ElementName=templateRoot}" MaxHeight="{TemplateBinding MaxDropDownHeight}">
-                            <Border x:Name="dropDownBorder" Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}" CornerRadius="0 0 7 7" BorderBrush="#E31E24" BorderThickness="1">
+                            <Border x:Name="dropDownBorder" Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}" CornerRadius="0 0 7 7" BorderBrush="#808080" BorderThickness="1">
                                 <ScrollViewer x:Name="DropDownScrollViewer">
                                     <Grid x:Name="grid" RenderOptions.ClearTypeHint="Enabled">
                                         <Canvas x:Name="canvas" HorizontalAlignment="Left" Height="0" VerticalAlignment="Top" Width="0">
@@ -341,7 +390,7 @@
     </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1.5*" MaxWidth="230"/>
+            <ColumnDefinition Width="1.7*" MaxWidth="230"/>
             <ColumnDefinition Width="5*"/>
         </Grid.ColumnDefinitions>
         <Border Grid.Column="0" Margin="0,0,4,0" Background="White" BorderBrush="#CFCFCF" CornerRadius="10">
@@ -368,6 +417,11 @@
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
+            <StackPanel Margin="2,8,0,0" Orientation="Horizontal" Grid.Row="0">
+                <Button Style="{StaticResource ButtonStyle}" Content="День"/>
+                <Button Style="{StaticResource ButtonStyle}" Content="Неделя"/>
+                <Button Style="{StaticResource ButtonStyle}" Content="Диапазон"/>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </UserControl>
