@@ -8,10 +8,9 @@ namespace CSLB5.CustomControls;
 
 public class CustomCalendarControl : Control
 {
-    public CustomCalendarControl()
+    static CustomCalendarControl()
     {
         DefaultStyleKeyProperty.OverrideMetadata(typeof(CustomCalendarControl), new FrameworkPropertyMetadata(typeof(CustomCalendarControl)));
-        DefaultStyleKeyProperty.OverrideMetadata(typeof(DayContentControl), new FrameworkPropertyMetadata(typeof(DayContentControl)));
     }
 
     public static readonly DependencyProperty SelectionModeProperty = DependencyProperty.Register(

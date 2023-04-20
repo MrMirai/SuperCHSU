@@ -4,5 +4,6 @@
     xmlns:local="clr-namespace:CSLB5">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="../CustomControls/DayContentControl.xaml"/>
+        <ResourceDictionary Source="../CustomControls/CustomCalendarControl.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

@@ -473,8 +473,8 @@
             <!-- </StackPanel> -->
             <custom:CustomCalendarControl SetSelectModeToSingleCommand="{Binding SetSelectModeToSingle}"
                                           SetSelectModeToRangeCommand="{Binding SetSelectModeToRange}"
-                                          SelectionMode="{Binding SelectionMode}">
-            </custom:CustomCalendarControl>
+                                          SelectionMode="{Binding SelectionMode}"/>
+
         </StackPanel>
     </Grid>
 </UserControl>
