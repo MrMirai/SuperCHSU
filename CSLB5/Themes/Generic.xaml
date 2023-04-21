@@ -3,6 +3,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:CSLB5">
     <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="../CustomControls/Gantt.xaml"/>
+        <ResourceDictionary Source="../CustomControls/ScheduleTable.xaml"/>
         <ResourceDictionary Source="../CustomControls/DayContentControl.xaml"/>
         <ResourceDictionary Source="../CustomControls/CustomCalendarControl.xaml"/>
     </ResourceDictionary.MergedDictionaries>

@@ -1,0 +1,18 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:CSLB5.CustomControls">
+
+    <Style TargetType="local:Gantt">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:Gantt">
+                    <Grid>
+                        <ScrollViewer  VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden">
+                            <Canvas Height="4000" x:Name="canvas" Background="WhiteSmoke"/>
+                        </ScrollViewer>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

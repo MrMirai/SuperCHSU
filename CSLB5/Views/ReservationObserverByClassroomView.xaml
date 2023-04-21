@@ -10,6 +10,6 @@
              d:DataContext="{d:DesignInstance {x:Type vm:ReservationObserverByClassroomViewModel}}"
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <Label Content="Аудитории" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <custom:ScheduleTable/>
     </Grid>
 </UserControl>
