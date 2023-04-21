@@ -42,7 +42,7 @@ public class ReservationObserverByTutorViewModel : BindableBase, IModel
         set => SetProperty(ref _value, value);
     }
     
-    private CalendarSelectionMode _selectionMode;
+    private CalendarSelectionMode _selectionMode = CalendarSelectionMode.None;
 
     public CalendarSelectionMode SelectionMode
     {
@@ -54,14 +54,14 @@ public class ReservationObserverByTutorViewModel : BindableBase, IModel
 
     private void OnSetSelectModeToSingle()
     {
-        _selectionMode = CalendarSelectionMode.SingleDate;
+        SelectionMode = CalendarSelectionMode.SingleDate;
     }
     
     public ICommand SetSelectModeToRange { get; set; }
 
     private void OnSetSelectModeToRange()
     {
-        _selectionMode = CalendarSelectionMode.SingleRange;
+        SelectionMode = CalendarSelectionMode.SingleRange;
     }
     
     public string Name => "Преподаватель";
