@@ -94,7 +94,14 @@ namespace CSLB5.CustomControls
             {
                 //текст
                 TextBlock textBlock = new TextBlock();
-                textBlock.Text = Text;
+                Binding textBind = new Binding
+                {
+                    Path = new PropertyPath(nameof(Text)),
+                    Source = this,
+                    Mode = BindingMode.TwoWay,
+
+                };
+                textBlock.SetBinding(TextBlock.TextProperty, textBind);
                 textBlock.FontSize = 14;
                 Canvas.SetLeft(textBlock, 10);
                 Canvas.SetTop(textBlock, textSetTop);

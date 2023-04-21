@@ -11,6 +11,6 @@
              d:DesignHeight="300" d:DesignWidth="300">
 
     <Grid>
-        <custom:Gantt  Text="Мам" Count="50"/>
+        <custom:Gantt  Text="{Binding Text}" Count="50"/>
     </Grid>
 </UserControl>

@@ -27,5 +27,12 @@ public class ReservationObserverGanttChartViewModel : BindableBase, IModel
         set => SetProperty(ref _data, value);
     }
 
+    private string _text = "Тест";
+    public string Text
+    {
+        get => _text;
+        set => SetProperty(ref _text, value);
+    }
+
     public string Name => "Диаграмма Ганта";
 }

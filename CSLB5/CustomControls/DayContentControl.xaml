@@ -6,7 +6,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:DayContentControl">
-                    <DataGrid ItemsSource="{TemplateBinding Items}">
+                    <DataGrid ItemsSource="{TemplateBinding Items}" AutoGenerateColumns="False">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="StartTime" Binding="{Binding StartTime}"/>
                             <DataGridTextColumn Header="EndTime" Binding="{Binding EndTime}"/>
