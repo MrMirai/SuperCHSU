@@ -15,13 +15,13 @@ namespace CSLB5.Converters
         public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value is not string) return new SolidColorBrush(Colors.Firebrick);
-            if (value == "л") return NumberBrushes[Resources.TypeOfLecturers.Lecture];
-            if (value == "лб") return NumberBrushes[Resources.TypeOfLecturers.LaboratoryWork];
-            if (value == "конс") return NumberBrushes[Resources.TypeOfLecturers.Consultation];
-            if (value == "п") return NumberBrushes[Resources.TypeOfLecturers.Practice];
-            if (value == "п.экз") return NumberBrushes[Resources.TypeOfLecturers.ExamRetake];
-            if (value == "экз") return NumberBrushes[Resources.TypeOfLecturers.Exam];
-            return new SolidColorBrush(Colors.Firebrick);
+            if (value.ToString() == "л") return NumberBrushes[Resources.TypeOfLecturers.Lecture];
+            if (value.ToString() == "лб") return NumberBrushes[Resources.TypeOfLecturers.LaboratoryWork];
+            if (value.ToString() == "конс") return NumberBrushes[Resources.TypeOfLecturers.Consultation];
+            if (value.ToString() == "п") return NumberBrushes[Resources.TypeOfLecturers.Practice];
+            if (value.ToString() == "п.экз") return NumberBrushes[Resources.TypeOfLecturers.ExamRetake];
+            if (value.ToString() == "экз") return NumberBrushes[Resources.TypeOfLecturers.Exam];
+            return new SolidColorBrush(Colors.Green);
         }
     }
 }

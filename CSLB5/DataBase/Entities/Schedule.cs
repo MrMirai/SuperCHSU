@@ -18,11 +18,11 @@ public partial class Schedule : Entity
 
     public string Abbrevation { get; set; } = null!;
 
-    public TimeOnly StartTime { get; set; }
+    public DateTime StartTime { get; set; }
 
-    public TimeOnly EndTime { get; set; }
+    public DateTime EndTime { get; set; }
 
-    public DateOnly Data { get; set; }
+    public DateOnly Data{ get; set; }
 
     public virtual TypesOfLecture AbbrevationNavigation { get; set; } = null!;
 
