@@ -8,13 +8,13 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:CustomCalendarControl">
-                    <StackPanel Orientation="Vertical">
-                        <StackPanel Margin="2,8,0,0" Orientation="Horizontal">
+                    <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
+                        <StackPanel HorizontalAlignment="Stretch" Orientation="Horizontal">
                             <Button Style="{StaticResource ButtonStyle}" Command="{TemplateBinding SetSelectModeToSingleCommand}" FontSize="12" Margin="2" Padding="7 0 7 0" Width="Auto" Content="День"/>
                             <Button Style="{StaticResource ButtonStyle}" FontSize="12" Margin="2" Padding="7 0 7 0" Width="Auto" Content="Неделя"/>
                             <Button Style="{StaticResource ButtonStyle}" Command="{TemplateBinding SetSelectModeToRangeCommand}" FontSize="12" Margin="2" Padding="7 0 7 0" Width="Auto" Content="Диапазон"/>
                         </StackPanel>
-                        <Calendar SelectionMode="{TemplateBinding SelectionMode}"/>
+                        <Calendar HorizontalAlignment="Stretch" SelectionMode="{TemplateBinding SelectionMode}"/>
                     </StackPanel>
                 </ControlTemplate>
             </Setter.Value>

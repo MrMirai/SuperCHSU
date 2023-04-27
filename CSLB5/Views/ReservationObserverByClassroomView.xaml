@@ -10,6 +10,15 @@
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance {x:Type vm:ReservationObserverByClassroomViewModel}}"
              d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Images/chsu.xaml"/>
+                <ResourceDictionary Source="../Themes/ButtonStyle.xaml"/>
+                <ResourceDictionary Source="../Themes/ComboBox.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1.7*" MaxWidth="230"/>
@@ -39,7 +48,7 @@
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
-            <custom:CustomCalendarControl SetSelectModeToSingleCommand="{Binding SetSelectModeToSingle}"
+            <custom:CustomCalendarControl HorizontalAlignment="Stretch" SetSelectModeToSingleCommand="{Binding SetSelectModeToSingle}"
                                           SetSelectModeToRangeCommand="{Binding SetSelectModeToRange}"
                                           SelectionMode="{Binding SelectionMode}"/>
         </StackPanel>
@@ -51,23 +60,23 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <custom:DayContentControl Items="{Binding Data}"/>
-                    <!-- <StackPanel> -->
-                    <!--     <TextBlock Grid.Column="0" Text="{Binding Data, Converter={converters:WeekdayConverter}}"/> -->
-                    <!--     <Grid Background="{Binding Abbrevation,Converter={converters:TypeOfLectureToColor}}"> -->
-                    <!--         <Grid.ColumnDefinitions> -->
-                    <!--             <ColumnDefinition/> -->
-                    <!--             <ColumnDefinition/> -->
-                    <!--             <ColumnDefinition/> -->
-                    <!--             <ColumnDefinition/> -->
-                    <!--         </Grid.ColumnDefinitions> -->
-                    <!--         <TextBlock  Grid.Column="0" Text="{Binding Classroom.Number}"/> -->
-                    <!--         <TextBlock Grid.Column="1" Text="{Binding StartTime,StringFormat='HH:MM'}"/> -->
-                    <!--         <TextBlock Grid.Column="2" Text="{Binding EndTime,StringFormat='HH:MM'}"/> -->
-                    <!--         <TextBlock Grid.Column="3" Text="{Binding Abbrevation}"/> -->
-                    <!--     </Grid> -->
-                    <!--     <Line X1="0" X2="2000" Stroke="Black"/> -->
-                    <!-- </StackPanel> -->
+                    <custom:DayContentControl Items="{Binding Data, Converter={converters:WeekdayConverter}}"/>
+                    <StackPanel>
+                        <TextBlock Grid.Column="0" Text="{Binding Data, Converter={converters:WeekdayConverter}}"/>
+                        <Grid Background="{Binding Abbrevation,Converter={converters:TypeOfLectureToColor}}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock  Grid.Column="0" Text="{Binding Classroom.Number}"/>
+                            <TextBlock Grid.Column="1" Text="{Binding StartTime,StringFormat='HH:MM'}"/>
+                            <TextBlock Grid.Column="2" Text="{Binding EndTime,StringFormat='HH:MM'}"/>
+                            <TextBlock Grid.Column="3" Text="{Binding Abbrevation}"/>
+                        </Grid>
+                        <Line X1="0" X2="2000" Stroke="Black"/>
+                    </StackPanel>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
