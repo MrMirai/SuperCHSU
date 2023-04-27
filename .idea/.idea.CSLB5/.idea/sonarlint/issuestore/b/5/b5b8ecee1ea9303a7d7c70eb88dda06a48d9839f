@@ -1,2 +1,0 @@
-
-csharpsquid:S1450"bRemove the field '_scheduleRepository' and declare it as a local variable in the relevant methods.(√ÑÄÅ
