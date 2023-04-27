@@ -11,34 +11,65 @@
              d:DataContext="{d:DesignInstance {x:Type vm:ReservationObserverByClassroomViewModel}}"
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <Grid>
-            <ItemsControl ItemsSource="{Binding Data}" >
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel/>
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.7*" MaxWidth="230"/>
+            <ColumnDefinition Width="5*"/>
+        </Grid.ColumnDefinitions>
+        <Border Grid.Column="0" Margin="0,0,4,0" Background="White" BorderBrush="#CFCFCF" CornerRadius="10">
+            <Border.Effect>
+                <DropShadowEffect Color="#808080" Opacity="0.3"/>
+            </Border.Effect>
+        </Border>
+        <Border Grid.Column="1" Margin="4 0 0 0" Background="White" BorderBrush="#CFCFCF" CornerRadius="10">
+            <Border.Effect>
+                <DropShadowEffect Color="#808080" Opacity="0.3"/>
+            </Border.Effect>
+        </Border>
+        <StackPanel Grid.Column="0">
+            <Image Source="{StaticResource ChsuDrawingImage}" Margin="18,10,18,0"/>
+            <TextBlock  Margin="18 18 0 0" TextWrapping="Wrap">
+                <Run FontSize="24" FontFamily="Serif" FontWeight="DemiBold" Text="Сегодня"/>
+                <LineBreak/>
+                <Run FontSize="13" FontFamily="Serif" FontWeight="DemiBold" Text="{Binding Value, Converter={converters:DateConverter}}"/>
+            </TextBlock>
+            <ComboBox ItemContainerStyle="{DynamicResource MyComboBoxItemContainerStyle}" Margin="3 13 10 0" Height="25"  ItemsSource="{Binding TutorCollection}"  Style="{DynamicResource MyComboBox}" >
+                <ComboBox.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel>
-                            <TextBlock Grid.Column="0" Text="{Binding Data, Converter={converters:WeekdayConverter}}"/>
-                            <Grid Background="{Binding Abbrevation,Converter={converters:TypeOfLectureToColor}}">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                </Grid.ColumnDefinitions>
-                                <TextBlock  Grid.Column="0" Text="{Binding Classroom.Number}"/>
-                                <TextBlock Grid.Column="1" Text="{Binding StartTime,StringFormat='HH:MM'}"/>
-                                <TextBlock Grid.Column="2" Text="{Binding EndTime,StringFormat='HH:MM'}"/>
-                                <TextBlock Grid.Column="3" Text="{Binding Abbrevation}"/>
-                            </Grid>
-                            <Line X1="0" X2="2000" Stroke="Black"/>
-                        </StackPanel>
+                        <TextBlock Text="{Binding Converter={converters:TutorConverter}}"/>
                     </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </Grid>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <custom:CustomCalendarControl SetSelectModeToSingleCommand="{Binding SetSelectModeToSingle}"
+                                          SetSelectModeToRangeCommand="{Binding SetSelectModeToRange}"
+                                          SelectionMode="{Binding SelectionMode}"/>
+        </StackPanel>
+        <ItemsControl Grid.Column="1" ItemsSource="{Binding Data}" >
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <custom:DayContentControl Items="{Binding Data}"/>
+                    <!-- <StackPanel> -->
+                    <!--     <TextBlock Grid.Column="0" Text="{Binding Data, Converter={converters:WeekdayConverter}}"/> -->
+                    <!--     <Grid Background="{Binding Abbrevation,Converter={converters:TypeOfLectureToColor}}"> -->
+                    <!--         <Grid.ColumnDefinitions> -->
+                    <!--             <ColumnDefinition/> -->
+                    <!--             <ColumnDefinition/> -->
+                    <!--             <ColumnDefinition/> -->
+                    <!--             <ColumnDefinition/> -->
+                    <!--         </Grid.ColumnDefinitions> -->
+                    <!--         <TextBlock  Grid.Column="0" Text="{Binding Classroom.Number}"/> -->
+                    <!--         <TextBlock Grid.Column="1" Text="{Binding StartTime,StringFormat='HH:MM'}"/> -->
+                    <!--         <TextBlock Grid.Column="2" Text="{Binding EndTime,StringFormat='HH:MM'}"/> -->
+                    <!--         <TextBlock Grid.Column="3" Text="{Binding Abbrevation}"/> -->
+                    <!--     </Grid> -->
+                    <!--     <Line X1="0" X2="2000" Stroke="Black"/> -->
+                    <!-- </StackPanel> -->
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
     </Grid>
 </UserControl>

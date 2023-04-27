@@ -6,15 +6,22 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:DayContentControl">
-                    <DataGrid ItemsSource="{TemplateBinding Items}" AutoGenerateColumns="False">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="StartTime" Binding="{Binding StartTime}"/>
-                            <DataGridTextColumn Header="EndTime" Binding="{Binding EndTime}"/>
-                            <DataGridTextColumn Header="Group" Binding="{Binding Group.GroupNumber}"/>
-                            <DataGridTextColumn Header="Discipline" Binding="{Binding Lecture.Name}"/>
-                            <DataGridTextColumn Header="Tutor" Binding="{Binding Tutor, Converter={converters:TutorConverter}}"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
+                    <StackPanel >
+                        <TextBlock Grid.Column="0" Text="{TemplateBinding Items}"/>
+                        <Grid Background="{Binding Abbrevation,Converter={converters:TypeOfLectureToColor}}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock  Grid.Column="0" Text="{Binding Classroom.Number}"/>
+                            <TextBlock Grid.Column="1" Text="{Binding StartTime,StringFormat='HH:MM'}"/>
+                            <TextBlock Grid.Column="2" Text="{Binding EndTime,StringFormat='HH:MM'}"/>
+                            <TextBlock Grid.Column="3" Text="{Binding Abbrevation}"/>
+                        </Grid>
+                        <Line X1="0" X2="2000" Stroke="Black"/>
+                    </StackPanel>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

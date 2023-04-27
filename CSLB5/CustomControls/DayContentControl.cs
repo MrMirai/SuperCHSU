@@ -32,15 +32,7 @@ namespace CSLB5.CustomControls
         public IEnumerable Items
         {
             get => (IEnumerable) GetValue(ItemsProperty);
-            set { 
-                SetValue(ItemsProperty, value);
-            }
-        }
-        public override void OnApplyTemplate()
-        {
-            IEnumerable temp = (IEnumerable)GetValue(ItemsProperty);
-
-            base.OnApplyTemplate();
+            set => SetValue(ItemsProperty, value);
         }
     }
 }
