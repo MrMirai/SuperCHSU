@@ -5,18 +5,19 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Documents;
 
 namespace CSLB5.Models
 {
     public class ScheduleModel
     {
-        public DateOnly Date { get; set; }
-        public ObservableCollection<Schedule> Data { get;set; }
- 
-        public ScheduleModel(DateOnly date, ObservableCollection<Schedule> data) { 
+        public ScheduleModel(DateOnly date)
+        {
             Date = date;
-            Data = data;
+            Schedules = new List<Schedule>();
         }
 
+        public DateOnly Date { get; set; }
+        public List<Schedule> Schedules { get; set; }
     }
 }

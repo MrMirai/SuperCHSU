@@ -34,5 +34,14 @@ namespace CSLB5.CustomControls
             get => (IEnumerable) GetValue(ItemsProperty);
             set => SetValue(ItemsProperty, value);
         }
+
+        public static readonly DependencyProperty DataProperty = DependencyProperty.Register(
+            nameof(Data), typeof(object), typeof(DayContentControl), new PropertyMetadata(default(object)));
+
+        public object Data
+        {
+            get => (object) GetValue(DataProperty);
+            set => SetValue(DataProperty, value);
+        }
     }
 }

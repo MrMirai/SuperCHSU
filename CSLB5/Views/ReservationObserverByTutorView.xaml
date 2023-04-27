@@ -48,16 +48,21 @@
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
-            <!-- <StackPanel Margin="2,8,0,0" Orientation="Horizontal" Grid.Row="0"> -->
-            <!--     <Button Style="{StaticResource ButtonStyle}" FontSize="12" Margin="2" Padding="7 0 7 0" Width="Auto" Content="День"/> -->
-            <!--     <Button Style="{StaticResource ButtonStyle}" FontSize="12" Margin="2" Padding="7 0 7 0" Width="Auto" Content="Неделя"/> -->
-            <!--     <Button Style="{StaticResource ButtonStyle}" FontSize="12" Margin="2" Padding="7 0 7 0" Width="Auto" Content="Диапазон"/> -->
-            <!-- </StackPanel> -->
             <custom:CustomCalendarControl SetSelectModeToSingleCommand="{Binding SetSelectModeToSingle}"
                                           SetSelectModeToRangeCommand="{Binding SetSelectModeToRange}"
                                           SelectionMode="{Binding SelectionMode}"/>
-
         </StackPanel>
-        
+        <ItemsControl Grid.Column="1" ItemsSource="{Binding Schedules}" >
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <custom:DayContentControl Data="{Binding Date, Converter={cv:WeekdayConverter}}" Items="{Binding Schedules}"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
     </Grid>
 </UserControl>

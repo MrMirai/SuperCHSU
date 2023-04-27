@@ -16,7 +16,7 @@ public class ReservationObserverByGroupViewModel : BindableBase, IModel
     {
         _scheduleRepository = scheduleRepository;
         var collection = _scheduleRepository.Items.Where(x => x.Lecture.Name == "Java");
-        var groped = _scheduleRepository.Items.GroupBy(x => x.Data);
+        IEnumerable groped = _scheduleRepository.Items.GroupBy(x => x.Data);
     }
 
     private ObservableCollection<Schedule> _data = new ObservableCollection<Schedule>();
