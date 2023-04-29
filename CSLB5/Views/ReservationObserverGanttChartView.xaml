@@ -5,12 +5,85 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:CSLB5.Views"
              xmlns:vm="clr-namespace:CSLB5.ViewModels" 
-             xmlns:custom="clr-namespace:CSLB5.CustomControls"
+             xmlns:custom="clr-namespace:CSLB5.CustomControls" 
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance {x:Type vm:ReservationObserverGanttChartViewModel}}"
              d:DesignHeight="300" d:DesignWidth="300">
 
-    <Grid>
-        <custom:Gantt  Text="{Binding Text}" Count="50"/>
+    <Grid Width="880">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="27"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="40"/>
+            <ColumnDefinition Width="840"/>
+        </Grid.ColumnDefinitions>
+
+        <WrapPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
+            <WrapPanel.Resources>
+                <Style TargetType="Label">
+                    <Setter Property="Width" Value="60"/>
+                    <Setter Property="BorderBrush" Value="Gray"/>
+                    <Setter Property="BorderThickness" Value="1"/>
+                    <Setter Property="Padding" Value="5"/>
+                </Style>
+            </WrapPanel.Resources>
+            <Label  Content="8:00"/>
+            <Label  Content="9:00"/>
+            <Label  Content="10:00"/>
+            <Label  Content="11:00"/>
+            <Label  Content="12:00"/>
+            <Label  Content="12:00"/>
+            <Label  Content="14:00"/>
+            <Label  Content="15:00"/>
+            <Label  Content="16:00"/>
+            <Label  Content="17:00"/>
+            <Label  Content="18:00"/>
+            <Label  Content="19:00"/>
+            <Label  Content="21:00"/>
+            <Label  Content="22:00"/>
+        </WrapPanel>
+
+        <ListBox Grid.Column="0" Grid.Row="1" ItemsSource="{Binding Classrooms}">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="Height" Value="30"/>
+                    <Setter Property="BorderThickness" Value="0"/>
+                    <Setter Property="Padding" Value="0"/>
+                </Style>
+            </ListBox.ItemContainerStyle>
+        </ListBox>
+
+        <ItemsControl Grid.Column="1" Grid.Row="1" ItemsSource="{Binding Rectangles}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Canvas/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemContainerStyle>
+                <Style TargetType="ContentPresenter">
+                    <Setter Property="Canvas.Left" Value="{Binding XStart}"/>
+                    <Setter Property="Canvas.Top" Value="{Binding YStart}"/>
+                </Style>
+            </ItemsControl.ItemContainerStyle>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Button  Background="Red" Width="{Binding Width}" Height="33" Content="">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Content" Value=""/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="False">
+                                        <Setter Property="Content" Value="Лб"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
     </Grid>
 </UserControl>

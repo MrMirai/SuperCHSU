@@ -11,13 +11,21 @@ namespace CSLB5.Models
 {
     public class ScheduleModel
     {
-        public ScheduleModel(DateOnly date)
+        //public ScheduleModel(DateOnly date)
+        //{
+        //    Date = date;
+        //    Schedules = new List<Schedule>();
+        //}
+
+        //public DateOnly Date { get; set; }
+        //public List<Schedule> Schedules { get; set; }
+        public DateOnly Date { get; set; }
+        public List<Schedule> DataSchedule { get; set; }
+
+        public ScheduleModel(DateOnly date, List<Schedule> dataSchedule)
         {
             Date = date;
-            Schedules = new List<Schedule>();
+            DataSchedule = dataSchedule;
         }
-
-        public DateOnly Date { get; set; }
-        public List<Schedule> Schedules { get; set; }
     }
 }

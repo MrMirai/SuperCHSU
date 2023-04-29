@@ -29,9 +29,10 @@ public class ReservationObserverByTutorViewModel : BindableBase, IModel
             TutorCollection.Add(item);
         }
 
-
+        /*
         var groupedSchedules = _scheduleRepository.Items.GroupBy(x => x.Data);
 
+        
         foreach (var group in groupedSchedules)
         {
             var model = new ScheduleModel(group.Key);
@@ -41,6 +42,7 @@ public class ReservationObserverByTutorViewModel : BindableBase, IModel
             }
             Schedules.Add(model);
         }
+       */
     }
 
     private ICollection<Tutor> _tutorCollection = new List<Tutor>();
