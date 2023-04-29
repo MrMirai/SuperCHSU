@@ -6,23 +6,20 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:DayContentControl">
-                    <Expander Header="{Binding Data}">
+                    <Expander Header="{TemplateBinding Data}">
                         <ListView>
                             <ListView.View>
                                 <GridView>
                                     <GridViewColumn Header="Время">
                                         <GridViewColumn.DisplayMemberBinding>
                                             <MultiBinding Converter="{converters:StartEndTimeConverter}">
-                                                <Binding Path="StartTime" StringFormat='HH:MM'/>
-                                                <Binding Path="EndTime" StringFormat='HH:MM'/>
+                                                <Binding Path="StartTime"/>
+                                                <Binding Path="EndTime"/>
                                             </MultiBinding>
                                         </GridViewColumn.DisplayMemberBinding>
                                     </GridViewColumn>
                                 </GridView>
                             </ListView.View>
-                            <ListView.Resources>
-                                <Binding Path="Items"></Binding>
-                            </ListView.Resources>
                         </ListView>
                         <Expander.DataContext>
                             <TemplateBinding Property="Items"/>

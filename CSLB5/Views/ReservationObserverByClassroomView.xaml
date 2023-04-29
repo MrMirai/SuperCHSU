@@ -81,7 +81,15 @@
                                             <ColumnDefinition/>
                                         </Grid.ColumnDefinitions>
                                         <TextBlock  Grid.Column="0" Text="{Binding Classroom.Number}"/>
-                                        <TextBlock Grid.Column="1" Text="{Binding StartTime,StringFormat='HH:MM'}"/>
+                                        <TextBlock Grid.Column="1">
+                                            <TextBlock.Text>
+                                                <MultiBinding Converter="{converters:StartEndTimeConverter}">
+                                                    <Binding Path="StartTime" StringFormat='HH:MM'/>
+                                                    <Binding Path="EndTime" StringFormat='HH:MM'/>
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+                                        <!--<TextBlock Grid.Column="1" Text="{Binding StartTime,StringFormat='HH:MM'}"/>-->
                                         <TextBlock Grid.Column="2" Text="{Binding EndTime,StringFormat='HH:MM'}"/>
                                         <TextBlock Grid.Column="3" Text="{Binding Abbrevation}"/>
                                     </Grid>
