@@ -12,4 +12,9 @@ public partial class Classroom : Entity
     public long Number { get; set; }
 
     public string? Letter { get; set; }
+
+    public override string ToString()
+    {
+        return $"{Number}{Letter ?? ""}";
+    }
 }

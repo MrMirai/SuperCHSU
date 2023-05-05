@@ -21,11 +21,6 @@ public class ReservationObserverByClassroomViewModel : BindableBase, IModel
     public ReservationObserverByClassroomViewModel(IRepository<Schedule>? scheduleRepository)
     {
         _scheduleRepository = scheduleRepository;
-        //ObservableCollection<Schedule> _temp = new ObservableCollection<Schedule>();
-        //foreach (var item in _scheduleRepository.Items)
-        //{
-        //    _temp.Add(item);
-        //}
         var groupedSchedules = scheduleRepository.Items.ToList().GroupBy(x => x.Data);
 
         foreach (var group in groupedSchedules)

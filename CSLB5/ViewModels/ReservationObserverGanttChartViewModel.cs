@@ -18,28 +18,21 @@ public class ReservationObserverGanttChartViewModel : BindableBase, IModel
     public ReservationObserverGanttChartViewModel(IRepository<Schedule>? scheduleRepository)
     {
         _scheduleRepository = scheduleRepository;
-        ObservableCollection<Schedule> _temp = new ObservableCollection<Schedule>();
-        foreach (var item in _scheduleRepository.Items)
-        {
-           if (item.Data==new System.DateOnly(2023,4,14)) {
-                _temp.Add(item);
-           }
-        }
 
-        var groupedSchedules = _temp.GroupBy(x => x.Classroom.Number);
+        var groupedSchedules = _scheduleRepository.Items.ToList().GroupBy(x => x.Classroom.ToString());
         foreach (var group in groupedSchedules)
         {
             _classrooms.Add(group.Key);
         }
 
-        foreach (var item in _temp)
+        foreach (var item in _scheduleRepository.Items)
         {
             _rectangles.Add(ScheduleToRectangle(item));
         }      
     }
 
-    private List<long> _classrooms = new List<long>();
-    public List<long> Classrooms
+    private List<string> _classrooms = new List<string>();
+    public List<string> Classrooms
     {
         get => _classrooms;
         set => SetProperty(ref _classrooms, value);
@@ -59,7 +52,7 @@ public class ReservationObserverGanttChartViewModel : BindableBase, IModel
         int i = 0;
         foreach (var item in _classrooms)
         {
-            if(item== schedule.Classroom.Number) break;
+            if(item.ToString() == schedule.Classroom.ToString()) break;
             i++;
         }
         int YStart = i*33;

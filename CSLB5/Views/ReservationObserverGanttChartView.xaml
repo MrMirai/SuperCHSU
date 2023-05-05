@@ -5,12 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:CSLB5.Views"
              xmlns:vm="clr-namespace:CSLB5.ViewModels" 
-             xmlns:custom="clr-namespace:CSLB5.CustomControls" 
+             xmlns:custom="clr-namespace:CSLB5.CustomControls"
+             xmlns:converters="clr-namespace:CSLB5.Converters"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance {x:Type vm:ReservationObserverGanttChartViewModel}}"
              d:DesignHeight="300" d:DesignWidth="300">
 
-    <Grid Width="880">
+    <!--<Grid Width="880">
         <Grid.RowDefinitions>
             <RowDefinition Height="27"/>
             <RowDefinition Height="auto"/>
@@ -82,6 +83,76 @@
                             </Style>
                         </Button.Style>
                     </Button>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </Grid>-->
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Time scale -->
+        <ItemsControl Grid.Row="0" Grid.Column="1" x:Name="TimeScale">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <!-- Add time scale items here or create them dynamically in code-behind -->
+        </ItemsControl>
+
+        <!-- Task types -->
+        <ItemsControl Grid.Row="1" Grid.Column="0" FontWeight="Black" ItemsSource="{Binding Classrooms}" x:Name="TaskTypes">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock FontWeight="Black" TextAlignment="Center" Text="{Binding}" Height="30"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+            <!-- Add task types here or create them dynamically in code-behind -->
+        </ItemsControl>
+        
+        <!-- Gantt chart canvas -->
+        <ItemsControl Grid.Column="1" Grid.Row="1" ItemsSource="{Binding Rectangles}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Canvas/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemContainerStyle>
+                <Style TargetType="ContentPresenter">
+                    <!--<Setter Property="Canvas.Left" Value="{Binding StartTime, Converter={converters:TimeToPositionConverter}}"/>
+                    <Setter Property="Canvas.Top" Value="{Binding Classroom, Converter={converters:ClassroomToPositionConverter}}"/>-->
+                    <Setter Property="Canvas.Left" Value="{Binding XStart}"/>
+                    <Setter Property="Canvas.Top" Value="{Binding YStart}"/>
+                </Style>
+            </ItemsControl.ItemContainerStyle>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <custom:GanttBlockControl BlockWidth="{Binding Width}" Background="#E31E24"/>
+                    <!--<Button  Background="Red" Width="{Binding Width}" Height="33" Content="">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Content" Value=""/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="False">
+                                        <Setter Property="Content" Value="Лб"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>-->
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
