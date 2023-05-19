@@ -53,12 +53,14 @@
                                           SetSelectModeToRangeCommand="{Binding SetSelectModeToRange}"
                                           SelectionMode="{Binding SelectionMode}"/>
         </StackPanel>
-        <ItemsControl Grid.Column="1" ItemsSource="{Binding Data}">
+        <ItemsControl Grid.Column="1" ItemsSource="{Binding Data}" Margin="0,7,0,0">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel>
-                        <TextBlock Text="{Binding Date, Converter={converters:WeekdayConverter}}"/>
-                        <Grid>
+                    <StackPanel Margin="11,2,5,2">
+                        <Border BorderThickness="0,0.5,0,0.5" BorderBrush="Gray" >
+                            <TextBlock Text="{Binding Date, Converter={converters:WeekdayConverter}}" />
+                        </Border>
+                                <Grid >
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
