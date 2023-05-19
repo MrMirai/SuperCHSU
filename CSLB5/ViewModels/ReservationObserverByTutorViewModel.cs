@@ -10,6 +10,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using CSLB5.Models;
 using MVVM.Commands;
+using MVVM.Extensions;
 
 namespace CSLB5.ViewModels;
 
@@ -20,29 +21,20 @@ public class ReservationObserverByTutorViewModel : BindableBase, IModel
 
     public ReservationObserverByTutorViewModel(IRepository<Schedule> scheduleRepository, IRepository<Tutor> tutorRepository)
     {
-        SetSelectModeToSingle = new RelayCommand(OnSetSelectModeToSingle);
-        SetSelectModeToRange = new RelayCommand(OnSetSelectModeToRange);
         _scheduleRepository = scheduleRepository;
-        TutorRepository = tutorRepository;
-        foreach (var item in TutorRepository.Items)
-        {
-            TutorCollection.Add(item);
-        }
+        var groupedSchedules = scheduleRepository.Items.ToList().GroupBy(x => x.Data);
 
-        /*
-        var groupedSchedules = _scheduleRepository.Items.GroupBy(x => x.Data);
-
-        
         foreach (var group in groupedSchedules)
         {
-            var model = new ScheduleModel(group.Key);
-            foreach (var schedule in group)
-            {
-                model.Schedules.Add(schedule);
-            }
-            Schedules.Add(model);
+            _data.Add(new ScheduleModel(group.Key, group.ToList()));
         }
-       */
+       // this.WhenPropertyChanged(x => x.Lecturer, UpdateReservationsByQuery);
+    }
+    private List<ScheduleModel> _data = new List<ScheduleModel>();
+    public List<ScheduleModel> Data
+    {
+        get => _data;
+        set => SetProperty(ref _data, value);
     }
 
     private ICollection<Tutor> _tutorCollection = new List<Tutor>();

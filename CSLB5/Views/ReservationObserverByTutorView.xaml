@@ -7,6 +7,7 @@
              xmlns:vm="clr-namespace:CSLB5.ViewModels"
              xmlns:cv="clr-namespace:CSLB5.Converters"
              xmlns:custom="clr-namespace:CSLB5.CustomControls"
+             xmlns:converters="clr-namespace:CSLB5.Converters"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance {x:Type vm:ReservationObserverByTutorViewModel}}"
              d:DesignHeight="300" d:DesignWidth="300">
@@ -52,15 +53,53 @@
                                           SetSelectModeToRangeCommand="{Binding SetSelectModeToRange}"
                                           SelectionMode="{Binding SelectionMode}"/>
         </StackPanel>
-        <ItemsControl Grid.Column="1" ItemsSource="{Binding Schedules}" >
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <StackPanel/>
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
+        <ItemsControl Grid.Column="1" ItemsSource="{Binding Data}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <custom:DayContentControl Data="{Binding Date, Converter={cv:WeekdayConverter}}" Items="{Binding Schedules}"/>
+                    <StackPanel>
+                        <TextBlock Text="{Binding Date, Converter={converters:WeekdayConverter}}"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="Аудитория"/>
+                            <TextBlock Grid.Column="1" TextAlignment="Center" Text="Время"/>
+                            <TextBlock Grid.Column="2" Text="Тип"/>
+                            <TextBlock Grid.Column="3" Text="Название"/>
+                            <TextBlock Grid.Column="4" Text="Преподаватель"/>
+                        </Grid>
+                        <ItemsControl ItemsSource="{Binding DataSchedule}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Background="{Binding Abbrevation,Converter={converters:TypeOfLectureToColor}}">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock  Grid.Column="0" Text="{Binding Classroom.Number}"/>
+                                        <TextBlock Grid.Column="1" TextAlignment="Center">
+                                            <TextBlock.Text>
+                                                <MultiBinding Converter="{converters:StartEndTimeConverter}">
+                                                    <Binding Path="StartTime" StringFormat='HH:MM'/>
+                                                    <Binding Path="EndTime" StringFormat='HH:MM'/>
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+                                        <TextBlock Grid.Column="2" Text="{Binding Abbrevation}"/>
+                                        <TextBlock Grid.Column="3" Text="{Binding Lecture.Name}"/>
+                                        <TextBlock Grid.Column="4" Text="{Binding Tutor.Surname}"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
