@@ -37,6 +37,13 @@ public class ReservationObserverByTutorViewModel : BindableBase, IModel
         set => SetProperty(ref _data, value);
     }
 
+    private DateTime _date;
+    public DateTime Date
+    {
+        get => _date;
+        set => SetProperty(ref _date, value);
+    }
+
     private ICollection<Tutor> _tutorCollection = new List<Tutor>();
 
     public ICollection<Tutor> TutorCollection
