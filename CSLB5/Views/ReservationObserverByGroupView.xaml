@@ -20,7 +20,7 @@
         <!--         <DataGridTextColumn Header="Tutor" Binding="{Binding Tutor, Converter={cv:TutorConverter}}"/> -->
         <!--     </DataGrid.Columns> -->
         <!-- </DataGrid> -->
-        <ListView >
+        <!--<ListView >
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="День">
@@ -33,7 +33,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <custom:DayContentControl Items="{Binding Data}"></custom:DayContentControl>
+        --><!--<custom:DayContentControl Items="{Binding Data}"></custom:DayContentControl>-->
         <Label Content="Группа" HorizontalAlignment="Center" VerticalAlignment="Center"/>
     </Grid>
 </UserControl>

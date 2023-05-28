@@ -13,7 +13,7 @@ namespace SuperCHSU.MainModule
 
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            
+           //репозиторий
         }
     }
 }

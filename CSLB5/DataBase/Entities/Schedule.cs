@@ -22,7 +22,7 @@ public partial class Schedule : Entity
 
     public DateTime EndTime { get; set; }
 
-    public DateOnly Data{ get; set; }
+    public DateTime Data{ get; set; }
 
     public virtual TypesOfLecture AbbrevationNavigation { get; set; } = null!;
 

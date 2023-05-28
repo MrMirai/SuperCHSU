@@ -13,8 +13,8 @@ namespace CSLB5.Converters
     {
         public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return value is DateOnly date
-                ? $"{ListOfWeekdays.weekdays[((int)date.DayOfWeek)]} / {date}"
+            return value is DateTime date
+                ? $"{ListOfWeekdays.weekdays[((int)date.DayOfWeek)]} / {date.ToString("dd.MM.yyyy")}"
                 : "Ошибка: неверный формат даты";
         }
     }

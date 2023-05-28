@@ -1,5 +1,6 @@
 ﻿using Prism.Ioc;
 using Prism.Modularity;
+using SuperCHSU.MainModule.Views;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -17,11 +18,13 @@ namespace SuperCHSU.Shell
     {
         protected override Window CreateShell()
         {
-            return Container.Resolve<MainWindow>();
+            return Container.Resolve<MainModule.Views.MainWindowView>();
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            containerRegistry.RegisterForNavigation<RedView>((nameof(RedView)));
+            containerRegistry.RegisterForNavigation<GreenView>((nameof(GreenView)));
         }
 
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)

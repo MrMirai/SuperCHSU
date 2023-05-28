@@ -14,7 +14,7 @@
                             <Button Style="{StaticResource ButtonStyle}" FontSize="12" Margin="2" Padding="7 0 7 0" Width="Auto" Content="Неделя"/>
                             <Button Style="{StaticResource ButtonStyle}" Command="{TemplateBinding SetSelectModeToRangeCommand}" FontSize="12" Margin="2" Padding="7 0 7 0" Width="Auto" Content="Диапазон"/>
                         </StackPanel>
-                        <Calendar HorizontalAlignment="Stretch" SelectionMode="{TemplateBinding SelectionMode}"/>
+                        <Calendar x:Name="PART_Calendar" HorizontalAlignment="Stretch" SelectionMode="{TemplateBinding SelectionMode}"/>
                     </StackPanel>
                 </ControlTemplate>
             </Setter.Value>

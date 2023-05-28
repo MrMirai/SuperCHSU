@@ -19,10 +19,10 @@ namespace CSLB5.Models
 
         //public DateOnly Date { get; set; }
         //public List<Schedule> Schedules { get; set; }
-        public DateOnly Date { get; set; }
+        public DateTime Date { get; set; }
         public List<Schedule> DataSchedule { get; set; }
 
-        public ScheduleModel(DateOnly date, List<Schedule> dataSchedule)
+        public ScheduleModel(DateTime date, List<Schedule> dataSchedule)
         {
             Date = date;
             DataSchedule = dataSchedule;

@@ -42,7 +42,7 @@
                 <LineBreak/>
                 <Run FontSize="13" FontFamily="Serif" FontWeight="DemiBold" Text="{Binding Value, Converter={cv:DateConverter}}"/>
             </TextBlock>
-            <ComboBox ItemContainerStyle="{DynamicResource MyComboBoxItemContainerStyle}" Margin="3 13 10 0" Height="25"  ItemsSource="{Binding TutorCollection}"  Style="{DynamicResource MyComboBox}" >
+            <ComboBox  SelectedItem="{Binding TutorSelected}" ItemContainerStyle="{DynamicResource MyComboBoxItemContainerStyle}" Margin="3 13 10 0" Height="25"  ItemsSource="{Binding TutorCollection}"  Style="{DynamicResource MyComboBox}" >
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding Converter={cv:TutorConverter}}"/>
@@ -51,7 +51,11 @@
             </ComboBox>
             <custom:CustomCalendarControl SetSelectModeToSingleCommand="{Binding SetSelectModeToSingle}"
                                           SetSelectModeToRangeCommand="{Binding SetSelectModeToRange}"
-                                          SelectionMode="{Binding SelectionMode}"/>
+                                          SelectionMode="{Binding SelectionMode}"
+                                          SelectedDate="{Binding Date,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                          SelectedDates="{Binding Dates,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+            <Button Command="{Binding GetSheduleTutorCommand}" Content="Go"/>
+            <!--<Calendar SelectedDate="{Binding Dates}"/>-->
         </StackPanel>
         <ItemsControl Grid.Column="1" ItemsSource="{Binding Data}" Margin="0,7,0,0">
             <ItemsControl.ItemTemplate>

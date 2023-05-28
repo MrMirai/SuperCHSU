@@ -4,5 +4,6 @@ namespace SuperCHSU.Shared
 {
     public class RegionNames
     {
+
     }
 }
