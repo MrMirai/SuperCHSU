@@ -3,22 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:CSLB5">
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="../CustomControls/GanttBlockControl.xaml"/>
-        <ResourceDictionary Source="../CustomControls/ScheduleTable.xaml"/>
-        <ResourceDictionary Source="../CustomControls/DayContentControl.xaml"/>
+        <ResourceDictionary Source="../CustomControls/CustomGanttControl.xaml"/>
         <ResourceDictionary Source="../CustomControls/CustomCalendarControl.xaml"/>
     </ResourceDictionary.MergedDictionaries>
-
-    <!--<Style TargetType="{x:Type local:CustomRectangle}">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:CustomRectangle}">
-                    <Border Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}">
-                    </Border>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>-->
 </ResourceDictionary>

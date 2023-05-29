@@ -2,10 +2,10 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:CSLB5.CustomControls"
                     xmlns:converters="clr-namespace:CSLB5.Converters">
-    <Style TargetType="local:DayContentControl">
+    <Style TargetType="local:CustomGanttControl">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="local:DayContentControl">
+                <ControlTemplate TargetType="local:CustomGanttControl">
                     <Grid>
                         <ContentPresenter  x:Name="frontPresenter" Content="{TemplateBinding FrontContent}"/>
                         <ContentPresenter  x:Name="backPresenter" Content="{TemplateBinding BackContent}" Visibility="Collapsed"/>
@@ -25,5 +25,4 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
 </ResourceDictionary>

@@ -13,6 +13,14 @@ namespace CSLB5.ViewModels;
 
 public class MainWindowViewModel : BindableBase
 {
+    private readonly IRepository<Schedule> _scheduleRepository;
+    private readonly IRepository<Tutor> _tutorRepository;
+    private BindableBase _selectModel;
+    private string _title = "SuperCHSU";
+    private ObservableCollection<SolidColorBrush> _backgrounds = new ObservableCollection<SolidColorBrush>();
+    private ObservableCollection<SolidColorBrush> _foregrounds = new ObservableCollection<SolidColorBrush>();
+
+
     public MainWindowViewModel(IRepository<Schedule> scheduleRepository, IRepository<Tutor> tutorRepository)
     {
         _scheduleRepository = scheduleRepository;
@@ -24,7 +32,6 @@ public class MainWindowViewModel : BindableBase
         Models.Add(new ReservationObserverSettingsViewModel(_scheduleRepository));
         Models.Add(new ReservationObserverGanttChartViewModel(_scheduleRepository));
         
-        //SelectModel = Models[0];
         OpenObserverByLecture = new RelayCommand(OnOpenObserverByLecture);
         OpenObserverByTutor = new RelayCommand(OnOpenObserverByTutor);
         OpenObserverByClassroom = new RelayCommand(OnOpenObserverByClassroom);
@@ -45,33 +52,23 @@ public class MainWindowViewModel : BindableBase
         _foregrounds.Add(new SolidColorBrush(Colors.Black));
     }
     
-    private readonly IRepository<Schedule> _scheduleRepository;
-    private readonly IRepository<Tutor> _tutorRepository;
+    
     public List<BindableBase> Models { get; private set; }
-
-    private BindableBase _selectModel;
     public BindableBase SelectModel
     {
         get => _selectModel;
         set => SetProperty(ref _selectModel, value);
     }
-
-    private string _title = "SuperCHSU";
     public string Title
     {
         get => _title;
         set => SetProperty(ref _title, value);
     }
-    private ObservableCollection<SolidColorBrush> _backgrounds = new ObservableCollection<SolidColorBrush>();
-    
     public ObservableCollection<SolidColorBrush> Backgrounds
     {
         get => _backgrounds;
         set => SetProperty(ref _backgrounds, value);
     }
-
-    private ObservableCollection<SolidColorBrush> _foregrounds = new ObservableCollection<SolidColorBrush>();
-
     public ObservableCollection<SolidColorBrush> Foregrounds
     {
         get => _foregrounds;

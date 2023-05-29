@@ -2,8 +2,6 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using MVVM;
-using MVVM.Commands;
 
 namespace CSLB5.CustomControls;
 
@@ -17,7 +15,6 @@ public class CustomCalendarControl : Control
         DefaultStyleKeyProperty.OverrideMetadata(typeof(CustomCalendarControl), new FrameworkPropertyMetadata(typeof(CustomCalendarControl)));
         
     }
-
     public override void OnApplyTemplate()
     {
         base.OnApplyTemplate();
@@ -64,7 +61,6 @@ public class CustomCalendarControl : Control
         get => (SelectedDatesCollection)GetValue(SelectedDatesProperty);
         set => SetValue(SelectedDatesProperty, value);
     }
-
     public void Changed(object? sender, SelectionChangedEventArgs e)
     {
         if(_calendar.SelectionMode== CalendarSelectionMode.SingleDate)

@@ -6,21 +6,26 @@ using MVVM;
 using MVVM.Commands;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Markup;
+
 
 namespace CSLB5.ViewModels;
 
 public class ReservationObserverGanttChartViewModel : BindableBase, IModel
 {
+    public string Name => "Диаграмма Ганта";
     private readonly IRepository<Schedule>? _scheduleRepository;
+    private List<Classroom> _classrooms = new List<Classroom>();
+    private DateTime _date = DateTime.Now;
+    private List<RectangleModel> _rectangles = new List<RectangleModel>();
+
 
     public ReservationObserverGanttChartViewModel(IRepository<Schedule>? scheduleRepository)
     {
+
         _scheduleRepository = scheduleRepository;
+
         var groupedSchedules = _scheduleRepository.Items.ToList().GroupBy(x => x.Classroom);
         foreach (var group in groupedSchedules)
         {
@@ -30,29 +35,29 @@ public class ReservationObserverGanttChartViewModel : BindableBase, IModel
         {
             _rectangles.Add(ScheduleToRectangle(item));
         }
+
         GetRectangleCommand = new RelayCommand(GetRectangle);
     }
 
-    private List<Classroom> _classrooms = new List<Classroom>();
+    
+    public ICommand GetRectangleCommand { get; set; }
+
     public List<Classroom> Classrooms
     {
         get => _classrooms;
         set => SetProperty(ref _classrooms, value);
     }
-
-    private DateTime _date=DateTime.Now;
     public DateTime Date
     {
         get => _date;
         set => SetProperty(ref _date, value);
     }
-
-    private List<RectangleModel> _rectangles = new List<RectangleModel>();
     public List<RectangleModel> Rectangles
     {
         get => _rectangles;
         set => SetProperty(ref _rectangles, value);
     }
+
 
     public RectangleModel ScheduleToRectangle(Schedule schedule)
     {
@@ -67,9 +72,6 @@ public class ReservationObserverGanttChartViewModel : BindableBase, IModel
         int YStart = i*30;
         return new RectangleModel(XStart,YStart,Width,schedule);
     }
-
-    public ICommand GetRectangleCommand { get; set; }
-
     private void GetRectangle()
     {
         List<Classroom> tempClassrooms = new List<Classroom>();
@@ -91,5 +93,4 @@ public class ReservationObserverGanttChartViewModel : BindableBase, IModel
         GetRectangleCommand = new RelayCommand(GetRectangle);
         Rectangles = tempRectangles;
     }
-    public string Name => "Диаграмма Ганта";
 }
