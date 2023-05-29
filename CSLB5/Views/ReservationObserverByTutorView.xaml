@@ -64,7 +64,7 @@
                         <Border BorderThickness="0,0.5,0,0.5" BorderBrush="Gray" >
                             <TextBlock Text="{Binding Date, Converter={converters:WeekdayConverter}}" />
                         </Border>
-                                <Grid >
+                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>

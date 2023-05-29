@@ -48,9 +48,9 @@
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
-            <custom:CustomCalendarControl HorizontalAlignment="Stretch" SetSelectModeToSingleCommand="{Binding SetSelectModeToSingle}"
+            <!--<custom:CustomCalendarControl HorizontalAlignment="Stretch" SetSelectModeToSingleCommand="{Binding SetSelectModeToSingle}"
                                           SetSelectModeToRangeCommand="{Binding SetSelectModeToRange}"
-                                          SelectionMode="{Binding SelectionMode}"/>
+                                          SelectionMode="{Binding SelectionMode}"/>-->
         </StackPanel>
 
         <ItemsControl Grid.Column="1" ItemsSource="{Binding Data}">

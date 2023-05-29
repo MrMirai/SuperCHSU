@@ -6,25 +6,21 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:DayContentControl">
-                    <Expander Header="{TemplateBinding Data}">
-                        <ListView>
-                            <ListView.View>
-                                <GridView>
-                                    <GridViewColumn Header="Время">
-                                        <GridViewColumn.DisplayMemberBinding>
-                                            <MultiBinding Converter="{converters:StartEndTimeConverter}">
-                                                <Binding Path="StartTime"/>
-                                                <Binding Path="EndTime"/>
-                                            </MultiBinding>
-                                        </GridViewColumn.DisplayMemberBinding>
-                                    </GridViewColumn>
-                                </GridView>
-                            </ListView.View>
-                        </ListView>
-                        <Expander.DataContext>
-                            <TemplateBinding Property="Items"/>
-                        </Expander.DataContext>
-                    </Expander>
+                    <Grid>
+                        <ContentPresenter  x:Name="frontPresenter" Content="{TemplateBinding FrontContent}"/>
+                        <ContentPresenter  x:Name="backPresenter" Content="{TemplateBinding BackContent}" Visibility="Collapsed"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="frontPresenter" Property="Visibility" Value="Collapsed"/>
+                            <Setter TargetName="backPresenter" Property="Visibility" Value="Visible"/>
+                            <Setter Property="Panel.ZIndex" Value="60" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="False">
+                            <Setter TargetName="frontPresenter" Property="Visibility" Value="Visible"/>
+                            <Setter TargetName="backPresenter" Property="Visibility" Value="Collapsed"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

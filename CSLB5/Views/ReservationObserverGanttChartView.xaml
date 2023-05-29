@@ -10,19 +10,28 @@
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance {x:Type vm:ReservationObserverGanttChartViewModel}}"
              d:DesignHeight="300" d:DesignWidth="300">
-
-    <!--<Grid Width="880">
+    <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="27"/>
             <RowDefinition Height="27"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="800"/>
+                <ColumnDefinition Width="80"/>
+            </Grid.ColumnDefinitions>
+            <DatePicker Grid.Column="0" SelectedDate="{Binding Date}"/>
+            <Button Grid.Column="1" Content="Вывести" Command="{Binding GetRectangleCommand}"/>
+        </Grid>
+
+        <Grid Grid.Row="1">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="40"/>
             <ColumnDefinition Width="840"/>
         </Grid.ColumnDefinitions>
-
-        <WrapPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
+        <WrapPanel  Grid.Column="1" Orientation="Horizontal">
             <WrapPanel.Resources>
                 <Style TargetType="Label">
                     <Setter Property="Width" Value="60"/>
@@ -46,49 +55,59 @@
             <Label  Content="21:00"/>
             <Label  Content="22:00"/>
         </WrapPanel>
+        </Grid>
 
-        <ListBox Grid.Column="0" Grid.Row="1" ItemsSource="{Binding Classrooms}">
-            <ListBox.ItemContainerStyle>
-                <Style TargetType="ListBoxItem">
-                    <Setter Property="Height" Value="30"/>
-                    <Setter Property="BorderThickness" Value="0"/>
-                    <Setter Property="Padding" Value="0"/>
-                </Style>
-            </ListBox.ItemContainerStyle>
-        </ListBox>
-
-        <ItemsControl Grid.Column="1" Grid.Row="1" ItemsSource="{Binding Rectangles}">
+        <ScrollViewer Grid.Row="2" Height="400" VerticalScrollBarVisibility="Hidden">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40"/>
+                    <ColumnDefinition Width="840"/>
+                </Grid.ColumnDefinitions>
+                <ItemsControl ItemsSource="{Binding Classrooms}" Grid.Column="0">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <Canvas/>
+                    <StackPanel/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <TextBox Height="30" Text="{Binding Number}" />
+                </DataTemplate>
+             </ItemsControl.ItemTemplate>
+        </ItemsControl>
+  
+        <ItemsControl Grid.Column="1"  ItemsSource="{Binding Rectangles}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                            <Canvas Height="5000" x:Name="MyCanvas"/>
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemContainerStyle>
                 <Style TargetType="ContentPresenter">
-                    <Setter Property="Canvas.Left" Value="{Binding XStart}"/>
-                    <Setter Property="Canvas.Top" Value="{Binding YStart}"/>
+                  <Setter Property="Canvas.Left" Value="{Binding XStart}"/>
+                  <Setter Property="Canvas.Top" Value="{Binding YStart}"/>
                 </Style>
             </ItemsControl.ItemContainerStyle>
             <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <Button  Background="Red" Width="{Binding Width}" Height="33" Content="">
-                        <Button.Style>
-                            <Style TargetType="Button">
-                                <Setter Property="Content" Value=""/>
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="False">
-                                        <Setter Property="Content" Value="Лб"/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Button.Style>
-                    </Button>
-                </DataTemplate>
+                        <DataTemplate>
+                            <custom:DayContentControl>
+                            <custom:DayContentControl.FrontContent>
+                                    <Rectangle  Fill="#E31E24" Width="{Binding Width}" Height="30" Opacity="0.2" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                            </custom:DayContentControl.FrontContent>
+                                <custom:DayContentControl.BackContent>
+                                    <Border CornerRadius="10"  Background="#E31E24" Opacity="1" Height="90" Width="320"  HorizontalAlignment="Left" VerticalAlignment="Top">
+                                        <TextBlock Text="{Binding Schedule,Converter={converters:ScheduleToString}}" Foreground="LightPink" Padding="10,0,0,0"  HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                    </Border>
+                                </custom:DayContentControl.BackContent>
+                            </custom:DayContentControl>
+                        </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
-    </Grid>-->
+                </Grid>
+        </ScrollViewer>
+    </Grid>
 
-    <Grid>
+    <!--<Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
             <RowDefinition Height="*"/>
@@ -98,17 +117,17 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <!-- Time scale -->
+        --><!-- Time scale --><!--
         <ItemsControl Grid.Row="0" Grid.Column="1" x:Name="TimeScale">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Orientation="Horizontal"/>
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
-            <!-- Add time scale items here or create them dynamically in code-behind -->
+            --><!-- Add time scale items here or create them dynamically in code-behind --><!--
         </ItemsControl>
 
-        <!-- Task types -->
+        --><!-- Task types --><!--
         <ItemsControl Grid.Row="1" Grid.Column="0" FontWeight="Black" ItemsSource="{Binding Classrooms}" x:Name="TaskTypes">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -120,10 +139,10 @@
                     <TextBlock FontWeight="Black" TextAlignment="Center" Text="{Binding}" Height="30"/>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
-            <!-- Add task types here or create them dynamically in code-behind -->
+            --><!-- Add task types here or create them dynamically in code-behind --><!--
         </ItemsControl>
         
-        <!-- Gantt chart canvas -->
+        --><!-- Gantt chart canvas --><!--
         <ItemsControl Grid.Column="1" Grid.Row="1" ItemsSource="{Binding Rectangles}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -132,8 +151,8 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemContainerStyle>
                 <Style TargetType="ContentPresenter">
-                    <!--<Setter Property="Canvas.Left" Value="{Binding StartTime, Converter={converters:TimeToPositionConverter}}"/>
-                    <Setter Property="Canvas.Top" Value="{Binding Classroom, Converter={converters:ClassroomToPositionConverter}}"/>-->
+                    --><!--<Setter Property="Canvas.Left" Value="{Binding StartTime, Converter={converters:TimeToPositionConverter}}"/>
+                    <Setter Property="Canvas.Top" Value="{Binding Classroom, Converter={converters:ClassroomToPositionConverter}}"/>--><!--
                     <Setter Property="Canvas.Left" Value="{Binding XStart}"/>
                     <Setter Property="Canvas.Top" Value="{Binding YStart}"/>
                 </Style>
@@ -141,7 +160,7 @@
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <custom:GanttBlockControl BlockWidth="{Binding Width}" Background="#E31E24"/>
-                    <!--<Button  Background="Red" Width="{Binding Width}" Height="33" Content="">
+                    --><!--<Button  Background="Red" Width="{Binding Width}" Height="33" Content="">
                         <Button.Style>
                             <Style TargetType="Button">
                                 <Setter Property="Content" Value=""/>
@@ -152,9 +171,9 @@
                                 </Style.Triggers>
                             </Style>
                         </Button.Style>
-                    </Button>-->
+                    </Button>--><!--
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
-        </ItemsControl>
-    </Grid>
+        </ItemsControl>-->
+    <!--</Grid>-->
 </UserControl>

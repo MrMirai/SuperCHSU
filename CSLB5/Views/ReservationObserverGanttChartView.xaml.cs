@@ -9,24 +9,24 @@ public partial class ReservationObserverGanttChartView : UserControl
     public ReservationObserverGanttChartView()
     {
         InitializeComponent();
-        AddTimeScaleItems();
+        //AddTimeScaleItems();
         //AddTaskTypes();
     }
 
-    private void AddTimeScaleItems()
-    {
-        for (int i = 0; i < 24; i++)
-        {
-            TextBlock timeText = new TextBlock
-            {
-                Text = $"{i}:00",
-                Width = 40,
-                FontWeight = FontWeight.FromOpenTypeWeight(700),
-                TextAlignment = TextAlignment.Center
-            };
-            TimeScale.Items.Add(timeText);
-        }
-    }
+    //private void AddTimeScaleItems()
+    //{
+    //    for (int i = 0; i < 24; i++)
+    //    {
+    //        TextBlock timeText = new TextBlock
+    //        {
+    //            Text = $"{i}:00",
+    //            Width = 40,
+    //            FontWeight = FontWeight.FromOpenTypeWeight(700),
+    //            TextAlignment = TextAlignment.Center
+    //        };
+    //        TimeScale.Items.Add(timeText);
+    //    }
+    //}
 
     //private void AddTaskTypes()
     //{
