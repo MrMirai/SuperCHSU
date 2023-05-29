@@ -12,18 +12,18 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="27"/>
-            <RowDefinition Height="27"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
         <!--Календарь&Кнопка-->
-        <Grid Grid.Row="0">
+        <Grid Grid.Row="0" Margin="0,0,0,10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="800"/>
                 <ColumnDefinition Width="80"/>
             </Grid.ColumnDefinitions>
-            <DatePicker Grid.Column="0" SelectedDate="{Binding Date}"/>
+            <DatePicker Grid.Column="0" SelectedDate="{Binding Date}" BorderThickness="0,0,0,1"/>
             <Button Grid.Column="1" Content="Вывести" Command="{Binding GetRectangleCommand}"/>
         </Grid>
 
@@ -33,7 +33,7 @@
                 <ColumnDefinition Width="40"/>
                 <ColumnDefinition Width="840"/>
             </Grid.ColumnDefinitions>
-            <WrapPanel  Grid.Column="1" Orientation="Horizontal">
+            <WrapPanel Grid.Column="1" Orientation="Horizontal" >
                 <WrapPanel.Resources>
                     <Style TargetType="Label">
                         <Setter Property="Width" Value="60"/>
@@ -42,20 +42,20 @@
                         <Setter Property="Padding" Value="5"/>
                     </Style>
                 </WrapPanel.Resources>
-                <Label  Content="8:00"/>
-                <Label  Content="9:00"/>
-                <Label  Content="10:00"/>
-                <Label  Content="11:00"/>
-                <Label  Content="12:00"/>
-                <Label  Content="12:00"/>
-                <Label  Content="14:00"/>
-                <Label  Content="15:00"/>
-                <Label  Content="16:00"/>
-                <Label  Content="17:00"/>
-                <Label  Content="18:00"/>
-                <Label  Content="19:00"/>
-                <Label  Content="21:00"/>
-                <Label  Content="22:00"/>
+                <Label BorderThickness=" 1,0,0,1" Content="8:00"/>
+                <Label BorderThickness=" 1,0,0,1" Content="9:00"/>
+                <Label BorderThickness=" 1,0,0,1"   Content="10:00"/>
+                <Label BorderThickness=" 1,0,0,1"  Content="11:00"/>
+                <Label BorderThickness=" 1,0,0,1"  Content="12:00"/>
+                <Label BorderThickness=" 1,0,0,1"  Content="12:00"/>
+                <Label BorderThickness=" 1,0,0,1"  Content="14:00"/>
+                <Label BorderThickness=" 1,0,0,1"  Content="15:00"/>
+                <Label BorderThickness=" 1,0,0,1"  Content="16:00"/>
+                <Label BorderThickness=" 1,0,0,1"  Content="17:00"/>
+                <Label BorderThickness=" 1,0,0,1"  Content="18:00"/>
+                <Label BorderThickness=" 1,0,0,1"  Content="19:00"/>
+                <Label BorderThickness=" 1,0,0,1"  Content="21:00"/>
+                <Label BorderThickness=" 1,0,0,1"  Content="22:00"/>
             </WrapPanel>
         </Grid>
          
@@ -77,7 +77,7 @@
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <TextBox Height="30" Text="{Binding Number}" />
+                            <TextBox Height="30" BorderThickness="0,1,1,1" Text="{Binding Number}" />
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
