@@ -42,11 +42,7 @@
                 <LineBreak/>
                 <Run FontSize="13" FontFamily="Serif" FontWeight="DemiBold" Text="{Binding Value, Converter={cv:DateConverter}}"/>
             </TextBlock>
-<<<<<<< HEAD
             <ComboBox  SelectedItem="{Binding TutorSelected}" ItemContainerStyle="{DynamicResource MyComboBoxItemContainerStyle}" Margin="3 13 7 4" Height="25"  ItemsSource="{Binding TutorCollection}"  Style="{DynamicResource MyComboBox}" >
-=======
-            <ComboBox  SelectedItem="{Binding TutorSelected}" ItemContainerStyle="{DynamicResource MyComboBoxItemContainerStyle}" Margin="3 13 10 0" Height="25"  ItemsSource="{Binding TutorCollection}"  Style="{DynamicResource MyComboBox}" >
->>>>>>> parent of ae7cff0 (Цвет кнопок в custom оставался, мини уборка в преподавателях)
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding Converter={cv:TutorConverter}}"/>
@@ -58,11 +54,7 @@
                                           SelectionMode="{Binding SelectionMode}"
                                           SelectedDate="{Binding Date,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                                           SelectedDates="{Binding Dates,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-<<<<<<< HEAD
             <Button Command="{Binding GetSheduleTutorCommand}" Style="{StaticResource ButtonStyle}" Margin="3 5 7 0" BorderBrush="Black" Width="Auto" Content="Показать"/>
-=======
-            <Button Command="{Binding GetSheduleTutorCommand}" Content="Go"/>
->>>>>>> parent of ae7cff0 (Цвет кнопок в custom оставался, мини уборка в преподавателях)
             <!--<Calendar SelectedDate="{Binding Dates}"/>-->
         </StackPanel>
         <ItemsControl Grid.Column="1" ItemsSource="{Binding Data}" Margin="0,7,0,0">
