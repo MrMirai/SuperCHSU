@@ -17,13 +17,24 @@ namespace CSLB5.ViewModels;
 
 public class ReservationObserverByTutorViewModel : BindableBase, IModel
 {
+    public string Name => "Преподаватель";
     private IRepository<Schedule> _scheduleRepository { get; }
     public IRepository<Tutor> TutorRepository { get; }
+    private List<ScheduleModel> _data = new List<ScheduleModel>();
+    private DateTime? _date;
+    private ICollection<Tutor> _tutorCollection = new List<Tutor>();
+    private Tutor _tutorSelected;
+    private ICollection<ScheduleModel> _schedules = new List<ScheduleModel>();
+    private DateOnly _value = DateOnly.FromDateTime(DateTime.Now);
+    private CalendarSelectionMode _selectionMode = CalendarSelectionMode.SingleDate;
+    public SelectedDatesCollection _dates;
+
 
     public ReservationObserverByTutorViewModel(IRepository<Schedule> scheduleRepository, IRepository<Tutor> tutorRepository)
     {
         _scheduleRepository = scheduleRepository;
         TutorRepository = tutorRepository;
+
         foreach (var item in TutorRepository.Items)
         {
             TutorCollection.Add(item);
@@ -34,87 +45,68 @@ public class ReservationObserverByTutorViewModel : BindableBase, IModel
         {
             _data.Add(new ScheduleModel(group.Key, group.ToList()));
         }
+
         SetSelectModeToSingle = new RelayCommand(OnSetSelectModeToSingle);
         SetSelectModeToRange = new RelayCommand(OnSetSelectModeToRange);
         GetSheduleTutorCommand = new RelayCommand(GetSheduleTutor);
-        // this.WhenPropertyChanged(x => x.Lecturer, UpdateReservationsByQuery);
+
     }
-    private List<ScheduleModel> _data = new List<ScheduleModel>();
+    
+
     public List<ScheduleModel> Data
     {
         get => _data;
         set => SetProperty(ref _data, value);
     }
-
-    private DateTime? _date;
     public DateTime? Date
     {
         get => _date;
         set => SetProperty(ref _date, value);
     }
-
-    private ICollection<Tutor> _tutorCollection = new List<Tutor>();
-
     public ICollection<Tutor> TutorCollection
     {
         get => _tutorCollection;
         set => SetProperty(ref _tutorCollection, value);
     }
-
-    private Tutor _tutorSelected;
-
     public Tutor TutorSelected
     {
         get => _tutorSelected;
         set => SetProperty(ref _tutorSelected, value);
     }
-
-
-    private ICollection<ScheduleModel> _schedules = new List<ScheduleModel>();
-
+    public SelectedDatesCollection Dates
+    {
+        get => _dates;
+        set => SetProperty(ref _dates, value);
+    }
     public ICollection<ScheduleModel> Schedules
     {
         get => _schedules;
         set => SetProperty(ref _schedules, value);
-    }
-    
-    private DateOnly _value = DateOnly.FromDateTime(DateTime.Now);
+    } 
     public DateOnly Value
     {
         get => _value;
         set => SetProperty(ref _value, value);
     }
-    
-    private CalendarSelectionMode _selectionMode = CalendarSelectionMode.SingleDate;
-
     public CalendarSelectionMode SelectionMode
     {
         get => _selectionMode;
         set => SetProperty(ref _selectionMode, value);
-    }
-    
+    } 
+
+
     public ICommand SetSelectModeToSingle { get; set; }
 
     private void OnSetSelectModeToSingle()
     {
         SelectionMode = CalendarSelectionMode.SingleDate;
     }
-    
     public ICommand SetSelectModeToRange { get; set; }
 
     private void OnSetSelectModeToRange()
     {
         SelectionMode = CalendarSelectionMode.SingleRange;
     }
-
-    public SelectedDatesCollection _dates;
-
-    public SelectedDatesCollection Dates
-    {
-       get => _dates;
-       set => SetProperty(ref _dates, value);
-    }
-
     public ICommand GetSheduleTutorCommand { get; set; }
 
     private void GetSheduleTutor()
@@ -153,6 +145,5 @@ public class ReservationObserverByTutorViewModel : BindableBase, IModel
             }
         }
     }
-    public string Name => "Преподаватель";
 
 }
