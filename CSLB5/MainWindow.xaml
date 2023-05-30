@@ -10,7 +10,8 @@
         xmlns:cv="clr-namespace:CSLB5.Converters"
         mc:Ignorable="d"
         DataContext="{Binding MainWindowModel, Source={StaticResource Locator}}"
-        Title="{Binding Title}" Height="500" Width="800">
+        Title="{Binding Title}" Height="550" Width="1100"
+        ResizeMode="NoResize">
     <Window.Resources>
         <ResourceDictionary Source="Themes/ButtonStyle.xaml"/>
     </Window.Resources>
@@ -38,10 +39,6 @@
                             Command="{Binding OpenObserverByClassroom}"  Background="{Binding Backgrounds[2]}" Foreground="{Binding Foregrounds[2]}"/>
             <Button Content="Юра" Style="{StaticResource ButtonStyle}" 
                             Command="{Binding OpenObserverGanttChart}"  Background="{Binding Backgrounds[3]}" Foreground="{Binding Foregrounds[3]}"/>
-        </StackPanel>
-        <StackPanel Margin="0,8,8,0" Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Right">
-            <Button Content="Кирилл" Style="{StaticResource ButtonStyle}" 
-                            Command="{Binding OpenObserverSettings}"/>
         </StackPanel>
         <ContentControl Grid.Row="1" BorderBrush="Transparent" Margin="8" Content="{Binding SelectModel}">
             <ContentControl.Resources>

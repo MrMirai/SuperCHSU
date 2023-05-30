@@ -10,6 +10,10 @@
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance {x:Type vm:ReservationObserverGanttChartViewModel}}"
              d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <ResourceDictionary Source="../Themes/../Themes/ButtonStyle.xaml"/>
+    </UserControl.Resources>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -20,11 +24,11 @@
         <!--Календарь&Кнопка-->
         <Grid Grid.Row="0" Margin="0,0,0,10">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="800"/>
-                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="400"/>
+                <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
             <DatePicker Grid.Column="0" SelectedDate="{Binding Date}" BorderThickness="0,0,0,1"/>
-            <Button Grid.Column="1" Content="Вывести" Command="{Binding GetRectangleCommand}"/>
+            <Button Grid.Column="1" Content="Показать" Style="{StaticResource ButtonStyle}" Command="{Binding GetRectangleCommand}"/>
         </Grid>
 
         <!--Шапка-столбцы-часы-->
@@ -55,13 +59,13 @@
                 <Label BorderThickness=" 1,0,0,1"  Content="18:00"/>
                 <Label BorderThickness=" 1,0,0,1"  Content="19:00"/>
                 <Label BorderThickness=" 1,0,0,1"  Content="21:00"/>
-                <Label BorderThickness=" 1,0,0,1"  Content="22:00"/>
+                <Label BorderThickness=" 1,0,1,1"  Content="22:00"/>
             </WrapPanel>
         </Grid>
-         
+
         <!--Скролл-->
         <ScrollViewer Grid.Row="2" Height="400" VerticalScrollBarVisibility="Hidden">
-            
+
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="40"/>
@@ -110,11 +114,11 @@
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
-                
+
             </Grid>
-            
+
         </ScrollViewer>
-        
+
     </Grid>
-    
+
 </UserControl>
