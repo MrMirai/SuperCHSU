@@ -15,30 +15,33 @@ public class MainWindowViewModel : BindableBase
 {
     private readonly IRepository<Schedule> _scheduleRepository;
     private readonly IRepository<Tutor> _tutorRepository;
+    private readonly IRepository<Classroom> _classroomRepository;
+    private readonly IRepository<Group> _groupRepository;
     private BindableBase _selectModel;
     private string _title = "SuperCHSU";
     private ObservableCollection<SolidColorBrush> _backgrounds = new ObservableCollection<SolidColorBrush>();
     private ObservableCollection<SolidColorBrush> _foregrounds = new ObservableCollection<SolidColorBrush>();
 
 
-    public MainWindowViewModel(IRepository<Schedule> scheduleRepository, IRepository<Tutor> tutorRepository)
+    public MainWindowViewModel(IRepository<Schedule> scheduleRepository, IRepository<Tutor> tutorRepository, IRepository<Classroom> classroomRepository, IRepository<Group> groupRepository)
     {
         _scheduleRepository = scheduleRepository;
         _tutorRepository = tutorRepository;
+        _classroomRepository = classroomRepository;
+        _groupRepository = groupRepository;
+
         Models = new();
-        Models.Add(new ReservationObserverByGroupViewModel(_scheduleRepository));
+        Models.Add(new ReservationObserverByGroupViewModel(_scheduleRepository, _groupRepository));
         Models.Add(new ReservationObserverByTutorViewModel(_scheduleRepository, _tutorRepository));
-        Models.Add(new ReservationObserverByClassroomViewModel(_scheduleRepository));
-        Models.Add(new ReservationObserverSettingsViewModel(_scheduleRepository));
+        Models.Add(new ReservationObserverByClassroomViewModel(_scheduleRepository,_classroomRepository));
         Models.Add(new ReservationObserverGanttChartViewModel(_scheduleRepository));
-        
-        OpenObserverByLecture = new RelayCommand(OnOpenObserverByLecture);
+
+        OpenObserverByGroup = new RelayCommand(OnOpenObserverByGroup);
         OpenObserverByTutor = new RelayCommand(OnOpenObserverByTutor);
         OpenObserverByClassroom = new RelayCommand(OnOpenObserverByClassroom);
-        OpenObserverSettings = new RelayCommand(OnOpenObserverSettings);
         OpenObserverGanttChart = new RelayCommand(OnOpenObserverGanttChart);
-        
-        
+
+
         var lectures = scheduleRepository.Items.Take(9).ToArray();
 
         _backgrounds.Add(new SolidColorBrush(Colors.White));
@@ -50,9 +53,10 @@ public class MainWindowViewModel : BindableBase
         _foregrounds.Add(new SolidColorBrush(Colors.Black));
         _foregrounds.Add(new SolidColorBrush(Colors.Black));
         _foregrounds.Add(new SolidColorBrush(Colors.Black));
+
     }
-    
-    
+
+
     public List<BindableBase> Models { get; private set; }
     public BindableBase SelectModel
     {
@@ -75,9 +79,9 @@ public class MainWindowViewModel : BindableBase
         set => SetProperty(ref _foregrounds, value);
     }
 
-    public ICommand OpenObserverByLecture { get;  }
+    public ICommand OpenObserverByGroup { get;  }
     
-    private void OnOpenObserverByLecture()
+    private void OnOpenObserverByGroup()
     {
         SelectModel = Models[0];
         for (int i = 0; i < 4; i++)
@@ -119,18 +123,12 @@ public class MainWindowViewModel : BindableBase
         Foregrounds[2] = new SolidColorBrush(Colors.White);
     }
 
-    public ICommand OpenObserverSettings { get; }
-
-    private void OnOpenObserverSettings()
-    {
-        SelectModel = Models[3];       
-    }
     
     public ICommand OpenObserverGanttChart { get; }
 
     private void OnOpenObserverGanttChart()
     {
-        SelectModel = Models[4];
+        SelectModel = Models[3];
         for (int i = 0; i < 4; i++)
         {
             Backgrounds[i] = new SolidColorBrush(Colors.White);

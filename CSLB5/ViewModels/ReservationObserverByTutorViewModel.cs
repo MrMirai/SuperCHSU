@@ -19,7 +19,7 @@ public class ReservationObserverByTutorViewModel : BindableBase, IModel
 {
     public string Name => "Преподаватель";
     private IRepository<Schedule> _scheduleRepository { get; }
-    public IRepository<Tutor> TutorRepository { get; }
+    public IRepository<Tutor> _tutorRepository { get; }
     private List<ScheduleModel> _data = new List<ScheduleModel>();
     private DateTime? _date;
     private ICollection<Tutor> _tutorCollection = new List<Tutor>();
@@ -33,9 +33,9 @@ public class ReservationObserverByTutorViewModel : BindableBase, IModel
     public ReservationObserverByTutorViewModel(IRepository<Schedule> scheduleRepository, IRepository<Tutor> tutorRepository)
     {
         _scheduleRepository = scheduleRepository;
-        TutorRepository = tutorRepository;
+        _tutorRepository = tutorRepository;
 
-        foreach (var item in TutorRepository.Items)
+        foreach (var item in _tutorRepository.Items)
         {
             TutorCollection.Add(item);
         }

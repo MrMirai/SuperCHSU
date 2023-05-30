@@ -16,7 +16,7 @@ namespace CSLB5.Converters
         public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return value is Schedule schedule
-                ? $"Предмет: {schedule.Lecture.Name}\nАудитория: {schedule.Classroom.Number}\nВремя: {schedule.StartTime.ToString("HH:mm")}-{schedule.EndTime.ToString("HH:mm")}\nПреподаватель: {schedule.Tutor.Surname} {schedule.Tutor.Name} {schedule.Tutor.Patronimic}"
+                ? $"Предмет: {schedule.Lecture.Name}\nАудитория: {schedule.Classroom.Number}{schedule.Classroom.Letter}\nВремя: {schedule.StartTime.ToString("HH:mm")} - {schedule.EndTime.ToString("HH:mm")}\nПреподаватель: {schedule.Tutor.Surname} {schedule.Tutor.Name} {schedule.Tutor.Patronimic}"
                 : "Ошибка: неверные данные";
         }
     }

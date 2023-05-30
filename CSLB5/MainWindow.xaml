@@ -31,13 +31,13 @@
             </Border.Effect>
         </Border>
         <StackPanel Margin="8,8,0,0" Orientation="Horizontal" Grid.Row="0">
-            <Button Content="Юля" Style="{StaticResource ButtonStyle}"
-                            Command="{Binding OpenObserverByLecture}" Background="{Binding Backgrounds[0]}" Foreground="{Binding Foregrounds[0]}"/>
-            <Button Content="Арина" Style="{StaticResource ButtonStyle}" 
+            <Button Content="Группа" Style="{StaticResource ButtonStyle}"
+                            Command="{Binding OpenObserverByGroup}" Background="{Binding Backgrounds[0]}" Foreground="{Binding Foregrounds[0]}"/>
+            <Button Width="130" Content="Преподаватель" Style="{StaticResource ButtonStyle}" 
                             Command="{Binding OpenObserverByTutor}"  Background="{Binding Backgrounds[1]}" Foreground="{Binding Foregrounds[1]}"/>
-            <Button Content="Настя" Style="{StaticResource ButtonStyle}" 
+            <Button Content="Аудитория" Style="{StaticResource ButtonStyle}" 
                             Command="{Binding OpenObserverByClassroom}"  Background="{Binding Backgrounds[2]}" Foreground="{Binding Foregrounds[2]}"/>
-            <Button Content="Юра" Style="{StaticResource ButtonStyle}" 
+            <Button Content="Гант" Style="{StaticResource ButtonStyle}" 
                             Command="{Binding OpenObserverGanttChart}"  Background="{Binding Backgrounds[3]}" Foreground="{Binding Foregrounds[3]}"/>
         </StackPanel>
         <ContentControl Grid.Row="1" BorderBrush="Transparent" Margin="8" Content="{Binding SelectModel}">

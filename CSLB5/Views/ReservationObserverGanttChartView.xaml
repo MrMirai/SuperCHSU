@@ -7,6 +7,7 @@
              xmlns:vm="clr-namespace:CSLB5.ViewModels" 
              xmlns:custom="clr-namespace:CSLB5.CustomControls"
              xmlns:converters="clr-namespace:CSLB5.Converters"
+              xmlns:cv="clr-namespace:CSLB5.Converters"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance {x:Type vm:ReservationObserverGanttChartViewModel}}"
              d:DesignHeight="300" d:DesignWidth="300">
@@ -14,6 +15,12 @@
         <ResourceDictionary Source="../Themes/../Themes/ButtonStyle.xaml"/>
     </UserControl.Resources>
 
+
+    <Border  Margin="4 0 0 0" Background="White" BorderBrush="#CFCFCF" CornerRadius="10">
+        <Border.Effect>
+            <DropShadowEffect Color="#808080" Opacity="0.3"/>
+        </Border.Effect>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -22,7 +29,7 @@
         </Grid.RowDefinitions>
 
         <!--Календарь&Кнопка-->
-        <Grid Grid.Row="0" Margin="0,0,0,10">
+        <Grid Grid.Row="0" Margin="10,0,0,10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="400"/>
                 <ColumnDefinition Width="auto"/>
@@ -32,7 +39,7 @@
         </Grid>
 
         <!--Шапка-столбцы-часы-->
-        <Grid Grid.Row="1">
+            <Grid Grid.Row="1" Margin="10,0,0,0" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="40"/>
                 <ColumnDefinition Width="840"/>
@@ -64,7 +71,7 @@
         </Grid>
 
         <!--Скролл-->
-        <ScrollViewer Grid.Row="2" Height="400" VerticalScrollBarVisibility="Hidden">
+        <ScrollViewer Grid.Row="2" Height="230" VerticalScrollBarVisibility="Hidden" >
 
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -80,9 +87,16 @@
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <TextBox Height="30" BorderThickness="0,1,1,1" Text="{Binding Number}" />
-                        </DataTemplate>
+                            <DataTemplate>
+                                <TextBox Height="30" BorderThickness="0,1,1,1">
+                                    <TextBox.Text>
+                                        <MultiBinding StringFormat="{}{0}{1}">
+                                            <Binding Path="Number"/>
+                                            <Binding Path="Letter"/>
+                                        </MultiBinding>
+                                    </TextBox.Text>
+                                </TextBox>
+                            </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
 
@@ -120,5 +134,5 @@
         </ScrollViewer>
 
     </Grid>
-
+    </Border>
 </UserControl>

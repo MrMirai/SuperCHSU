@@ -11,6 +11,7 @@
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance {x:Type vm:ReservationObserverByTutorViewModel}}"
              d:DesignHeight="300" d:DesignWidth="300">
+    
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -84,17 +85,19 @@
                         <!--Шапка-название столбцов-->
                         <Grid>
                             <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="80"/>
+                                <ColumnDefinition Width="90"/>
+                                <ColumnDefinition Width="50"/>
                                 <ColumnDefinition/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
+                                <ColumnDefinition  Width="230"/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             <TextBlock Grid.Column="0" Text="Аудитория"/>
-                            <TextBlock Grid.Column="1" TextAlignment="Center" Text="Время"/>
+                            <TextBlock Grid.Column="1" TextAlignment="Left" Text="Время"/>
                             <TextBlock Grid.Column="2" Text="Тип"/>
-                            <TextBlock Grid.Column="3" Text="Название"/>
+                            <TextBlock Grid.Column="3" Text="Предмет"/>
                             <TextBlock Grid.Column="4" Text="Преподаватель"/>
+                            <TextBlock Grid.Column="5" Text="Группа"/>
                         </Grid>
 
                         <!--Записи на этот день-->
@@ -103,14 +106,15 @@
                                 <DataTemplate>
                                     <Grid Background="{Binding Abbrevation,Converter={converters:TypeOfLectureToColor}}">
                                         <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="80"/>
+                                            <ColumnDefinition Width="90"/>
+                                            <ColumnDefinition Width="50"/>
                                             <ColumnDefinition/>
-                                            <ColumnDefinition/>
-                                            <ColumnDefinition/>
-                                            <ColumnDefinition/>
+                                            <ColumnDefinition  Width="230"/>
                                             <ColumnDefinition/>
                                         </Grid.ColumnDefinitions>
-                                        <TextBlock  Grid.Column="0" Text="{Binding Classroom.Number}"/>
-                                        <TextBlock Grid.Column="1" TextAlignment="Center">
+                                        <TextBlock  Grid.Column="0" Text="{Binding Classroom,Converter={converters:ClassroomConverter}}"/>
+                                        <TextBlock Grid.Column="1" TextAlignment="Left">
                                             <TextBlock.Text>
                                                 <MultiBinding Converter="{converters:StartEndTimeConverter}">
                                                     <Binding Path="StartTime" StringFormat='HH:MM'/>
@@ -120,7 +124,8 @@
                                         </TextBlock>
                                         <TextBlock Grid.Column="2" Text="{Binding Abbrevation}"/>
                                         <TextBlock Grid.Column="3" Text="{Binding Lecture.Name}"/>
-                                        <TextBlock Grid.Column="4" Text="{Binding Tutor.Surname}"/>
+                                        <TextBlock Grid.Column="4" Text="{Binding Tutor,Converter={converters:TutorConverter}}"/> 
+                                        <TextBlock Grid.Column="5" Text="{Binding Group.GroupNumber}"/>
                                     </Grid>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
