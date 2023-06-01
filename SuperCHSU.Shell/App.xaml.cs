@@ -32,7 +32,7 @@ namespace SuperCHSU.Shell
     /// </summary>
     public partial class App : PrismApplication
     {
-        private IConfiguration _configuration;
+        //private IConfiguration _configuration;
         public static bool IsDesignMode { get; set; } = true;
 
         //private static IHost _host;
@@ -65,13 +65,13 @@ namespace SuperCHSU.Shell
 
 
 
-        protected override void OnStartup(StartupEventArgs e)
-        {
-            base.OnStartup(e);
-            var builder = new ConfigurationBuilder().SetBasePath(CurrentDirectory)
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
-            _configuration = builder.Build();
-        }
+        //protected override void OnStartup(StartupEventArgs e)
+        //{
+        //    base.OnStartup(e);
+        //    var builder = new ConfigurationBuilder().SetBasePath(CurrentDirectory)
+        //        .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+        //    _configuration = builder.Build();
+        //}
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
@@ -90,9 +90,17 @@ namespace SuperCHSU.Shell
             //    return new ScheduleContext(dbContextOptionsBuilder.Options);
             //});
             //containerRegistry.AddDatabese(configuration);
-            var optionBuilder = new DbContextOptionsBuilder<ScheduleContext>();
-            var option = optionBuilder.UseSqlite(_configuration.GetConnectionString("SQLiteDatabase")).Options;
-            containerRegistry.Register<ScheduleContext>(() => new ScheduleContext(option));
+            //var optionBuilder = new DbContextOptionsBuilder<ScheduleContext>();
+            //var option = optionBuilder.UseSqlite(_configuration.GetConnectionString("SQLiteDatabase")).Options;
+            var configuration = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json")
+                .Build();
+
+            containerRegistry.RegisterSingleton<ScheduleContext>();
+            containerRegistry.RegisterInstance(new DbContextOptionsBuilder<ScheduleContext>().UseSqlite(configuration.GetConnectionString("SQLiteDatabase")).Options);
+
+            //containerRegistry.Register<ScheduleContext>(() => new ScheduleContext(option));
             containerRegistry.Register<IRepository<Classroom>, DbRepository<Classroom>>()
                 .Register<IRepository<Group>, DbRepository<Group>>()
                 .Register<IRepository<Lecture>, DbRepository<Lecture>>()

@@ -11,12 +11,9 @@ namespace SuperCHSU.MainModule.ViewModels
 {
      public class ClassViewModel
      {
-         private ScheduleContext _context;
 
-        public ClassViewModel()
+         public ClassViewModel()
         {
-            _context = new ScheduleContext(); 
-            var l = _context.Model.GetEntityTypes().Select(t => t.GetDefaultTableName().Distinct().ToList());
         }
 
         public string _title = "Hiiiiiiii";

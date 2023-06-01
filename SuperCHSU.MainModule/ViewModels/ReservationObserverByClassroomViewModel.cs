@@ -38,7 +38,7 @@ public class ReservationObserverByClassroomViewModel : BindableBase, IModel, INa
         _scheduleRepository = scheduleRepository;
         _classroomRepository = classroomRepository;
 
-        foreach (var item in _classroomRepository.Items.ToList())
+        foreach (var item in _classroomRepository.Items)
         {
             ClassroomCollection.Add(item);
         }

@@ -7,34 +7,23 @@ namespace SuperCHSU.MainModule.DataBase.Context;
 
 public partial class ScheduleContext : DbContext
 {
-    public ScheduleContext()
-    {
-
-    }
-
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        base.OnConfiguring(optionsBuilder);
-        optionsBuilder.UseSqlite(@"Data Source=D:\\Prog\\C#\\3 CURS\\CSLBWPF\\SuperCHSU.MainModule\\DataBase\\schedule.db");
-    }
 
     public ScheduleContext(DbContextOptions<ScheduleContext> options)
         : base(options)
     {
-        Database.EnsureCreated();
     }
 
-    public virtual DbSet<Classroom> Classrooms { get; set; }
+    public DbSet<Classroom> Classrooms { get; set; }
 
-    public virtual DbSet<Group> Groups { get; set; }
+    public DbSet<Group> Groups { get; set; }
 
-    public virtual DbSet<Lecture> Lectures { get; set; }
+    public DbSet<Lecture> Lectures { get; set; }
 
-    public virtual DbSet<Schedule> Sсhedules { get; set; }
+    public DbSet<Schedule> Sсhedules { get; set; }
 
-    public virtual DbSet<Tutor> Tutors { get; set; }
+    public DbSet<Tutor> Tutors { get; set; }
 
-    public virtual DbSet<TypesOfLecture> TypesOfLectures { get; set; }
+    public DbSet<TypesOfLecture> TypesOfLectures { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
