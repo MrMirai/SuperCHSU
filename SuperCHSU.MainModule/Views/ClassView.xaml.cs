@@ -10,17 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace SuperCHSU.MainModule.Views
 {
     /// <summary>
-    /// Логика взаимодействия для GreenView.xaml
+    /// Логика взаимодействия для ClassView.xaml
     /// </summary>
-    public partial class GreenView : UserControl
+    public partial class ClassView : Window
     {
-        public GreenView()
+        public ClassView()
         {
             InitializeComponent();
         }

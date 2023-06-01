@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 namespace SuperCHSU.MainModule.Views
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для MainWindowView.xaml
     /// </summary>
     public partial class MainWindowView : Window
     {

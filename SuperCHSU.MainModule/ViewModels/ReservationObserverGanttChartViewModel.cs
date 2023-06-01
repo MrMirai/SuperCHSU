@@ -1,16 +1,15 @@
-﻿using CSLB5.DataBase.Entities;
-using CSLB5.DataBase.Interfaces;
-using CSLB5.Models;
-using CSLB5.ViewModels.Base;
-using MVVM;
-using MVVM.Commands;
+﻿using SuperCHSU.MainModule.DataBase.Entities;
+using SuperCHSU.MainModule.DataBase.Interfaces;
+using SuperCHSU.MainModule.Models;
+using SuperCHSU.MainModule.ViewModels.Base;
+using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
+using Prism.Commands;
 
-
-namespace CSLB5.ViewModels;
+namespace SuperCHSU.MainModule.ViewModels;
 
 public class ReservationObserverGanttChartViewModel : BindableBase, IModel
 {
@@ -25,7 +24,7 @@ public class ReservationObserverGanttChartViewModel : BindableBase, IModel
     {
 
         _scheduleRepository = scheduleRepository;
-        GetRectangleCommand = new RelayCommand(GetRectangle);
+        GetRectangleCommand = new DelegateCommand(GetRectangle);
     }
 
     

@@ -12,9 +12,6 @@
     <DataTemplate DataType="{x:Type vm:ReservationObserverByClassroomViewModel}">
         <views:ReservationObserverByClassroomView DataContext="{Binding}"/>
     </DataTemplate>
-    <DataTemplate DataType="{x:Type vm:ReservationObserverSettingsViewModel}">
-        <views:ReservationObserverSettingsView DataContext="{Binding}"/>
-    </DataTemplate>
     <DataTemplate DataType="{x:Type vm:ReservationObserverGanttChartViewModel}">
         <views:ReservationObserverGanttChartView DataContext="{Binding}"/>
     </DataTemplate>

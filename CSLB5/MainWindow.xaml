@@ -37,7 +37,7 @@
                             Command="{Binding OpenObserverByTutor}"  Background="{Binding Backgrounds[1]}" Foreground="{Binding Foregrounds[1]}"/>
             <Button Content="Аудитория" Style="{StaticResource ButtonStyle}" 
                             Command="{Binding OpenObserverByClassroom}"  Background="{Binding Backgrounds[2]}" Foreground="{Binding Foregrounds[2]}"/>
-            <Button Content="Гант" Style="{StaticResource ButtonStyle}" 
+            <Button Width="150" Content="Диаграмма Ганта" Style="{StaticResource ButtonStyle}" 
                             Command="{Binding OpenObserverGanttChart}"  Background="{Binding Backgrounds[3]}" Foreground="{Binding Foregrounds[3]}"/>
         </StackPanel>
         <ContentControl Grid.Row="1" BorderBrush="Transparent" Margin="8" Content="{Binding SelectModel}">

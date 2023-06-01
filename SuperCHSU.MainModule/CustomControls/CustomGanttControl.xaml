@@ -1,0 +1,28 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:SuperCHSU.MainModule.CustomControls"
+                    xmlns:converters="clr-namespace:SuperCHSU.MainModule.Converters">
+    <Style TargetType="local:CustomGanttControl">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:CustomGanttControl">
+                    <Grid>
+                        <ContentPresenter  x:Name="frontPresenter" Content="{TemplateBinding FrontContent}"/>
+                        <ContentPresenter  x:Name="backPresenter" Content="{TemplateBinding BackContent}" Visibility="Collapsed"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="frontPresenter" Property="Visibility" Value="Collapsed"/>
+                            <Setter TargetName="backPresenter" Property="Visibility" Value="Visible"/>
+                            <Setter Property="Panel.ZIndex" Value="60" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="False">
+                            <Setter TargetName="frontPresenter" Property="Visibility" Value="Visible"/>
+                            <Setter TargetName="backPresenter" Property="Visibility" Value="Collapsed"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

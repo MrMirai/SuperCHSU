@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace CSLB5.ViewModels.Registrator;
+namespace SuperCHSU.MainModule.ViewModels.Registrator;
 
 public static class ViewModelsRegistrator
 {

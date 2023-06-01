@@ -5,23 +5,51 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SuperCHSU.MainModule.Views"
         mc:Ignorable="d"
+        xmlns:vm="clr-namespace:SuperCHSU.MainModule.ViewModels"
+        xmlns:custom="clr-namespace:SuperCHSU.MainModule.CustomControls"
+        xmlns:cv="clr-namespace:SuperCHSU.MainModule.Converters"
+        xmlns:converters="clr-namespace:SuperCHSU.MainModule.Converters"   
+        xmlns:viewmodels="clr-namespace:SuperCHSU.MainModule.ViewModels" 
         xmlns:prism="http://prismlibrary.com/" 
         prism:ViewModelLocator.AutoWireViewModel="True"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindowView" Height="450" Width="800">
+    <Window.Resources>
+        <ResourceDictionary Source="../Themes/../Themes/ButtonStyle.xaml"/>
+    </Window.Resources>
+    <!--<i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding OpenObserverByLecture}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>-->
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition/>
+            <RowDefinition Height="1.5*" MaxHeight="47"/>
+            <RowDefinition Height="5*"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
+        <Border Grid.Row="0" Margin="8,8,8,0" Background="White" BorderBrush="#CFCFCF" CornerRadius="17">
+            <Border.Effect>
+                <DropShadowEffect Color="#808080" Opacity="0.3"/>
+            </Border.Effect>
+        </Border>
+        <StackPanel Margin="8,8,0,0" Orientation="Horizontal" Grid.Row="0">
+            <Button Content="Группа" Style="{StaticResource ButtonStyle}"
+                            Command="{Binding OpenObserverByGroup}" Background="{Binding Backgrounds[0]}" Foreground="{Binding Foregrounds[0]}"/>
+            <Button Width="130" Content="Преподаватель" Style="{StaticResource ButtonStyle}" 
+                            Command="{Binding OpenObserverByTutor}"  Background="{Binding Backgrounds[1]}" Foreground="{Binding Foregrounds[1]}"/>
+            <Button Content="Аудитория" Style="{StaticResource ButtonStyle}" 
+                            Command="{Binding OpenObserverByClassroom}"  Background="{Binding Backgrounds[2]}" Foreground="{Binding Foregrounds[2]}"/>
+            <Button Width="150" Content="Диаграмма Ганта" Style="{StaticResource ButtonStyle}" 
+                            Command="{Binding OpenObserverGanttChart}"  Background="{Binding Backgrounds[3]}" Foreground="{Binding Foregrounds[3]}"/>
+        </StackPanel>
+        <!--<ContentControl Grid.Row="1" BorderBrush="Transparent" Margin="8" Content="{Binding SelectModel}">
+            <ContentControl.Resources>
+                <ResourceDictionary>
+                    <ResourceDictionary.MergedDictionaries>
+                        <ResourceDictionary Source="../Templates/ModelMainView.xaml"/>
+                    </ResourceDictionary.MergedDictionaries>
+                </ResourceDictionary>
+            </ContentControl.Resources>
+        </ContentControl>-->
 
-            <Button Grid.Column="0"  Content="Red" Command="{Binding Command}" CommandParameter="RedView"/>
-            <Button Grid.Column="1"  Content="Green" Command="{Binding Command}" CommandParameter="GreenView"/>
-        </Grid>
-        <ContentControl Grid.Row="1" prism:RegionManager.RegionName="ContentRegion"/>
     </Grid>
 </Window>
