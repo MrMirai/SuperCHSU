@@ -8,33 +8,32 @@ using System.Linq;
 using System.Windows.Media;
 using System.Collections.ObjectModel;
 using Prism.Commands;
+using Prism.Regions;
+using SuperCHSU.MainModule.DataBase.Context;
+using SuperCHSU.MainModule.DataBase.Repositories;
+using SuperCHSU.MainModule.Views;
 
 namespace SuperCHSU.MainModule.ViewModels;
 
 public class MainWindowViewModel : BindableBase
 {
+    private readonly IRegionManager _regionManager;
     private readonly IRepository<Schedule> _scheduleRepository;
     private readonly IRepository<Tutor> _tutorRepository;
     private readonly IRepository<Classroom> _classroomRepository;
     private readonly IRepository<Group> _groupRepository;
-    private BindableBase _selectModel;
     private string _title = "SuperCHSU";
     private ObservableCollection<SolidColorBrush> _backgrounds = new ObservableCollection<SolidColorBrush>();
     private ObservableCollection<SolidColorBrush> _foregrounds = new ObservableCollection<SolidColorBrush>();
 
 
-    public MainWindowViewModel(IRepository<Schedule> scheduleRepository, IRepository<Tutor> tutorRepository, IRepository<Classroom> classroomRepository, IRepository<Group> groupRepository)
+    public MainWindowViewModel(IRepository<Schedule> scheduleRepository, IRepository<Tutor> tutorRepository, IRepository<Classroom> classroomRepository, IRepository<Group> groupRepository, IRegionManager regionManager)
     {
         _scheduleRepository = scheduleRepository;
         _tutorRepository = tutorRepository;
         _classroomRepository = classroomRepository;
         _groupRepository = groupRepository;
-
-        Models = new();
-        Models.Add(new ReservationObserverByGroupViewModel(_scheduleRepository, _groupRepository));
-        Models.Add(new ReservationObserverByTutorViewModel(_scheduleRepository, _tutorRepository));
-        Models.Add(new ReservationObserverByClassroomViewModel(_scheduleRepository,_classroomRepository));
-        Models.Add(new ReservationObserverGanttChartViewModel(_scheduleRepository));
+        _regionManager = regionManager;
 
         OpenObserverByGroup = new DelegateCommand(OnOpenObserverByGroup);
         OpenObserverByTutor = new DelegateCommand(OnOpenObserverByTutor);
@@ -56,13 +55,6 @@ public class MainWindowViewModel : BindableBase
 
     }
 
-
-    public List<BindableBase> Models { get; private set; }
-    public BindableBase SelectModel
-    {
-        get => _selectModel;
-        set => SetProperty(ref _selectModel, value);
-    }
     public string Title
     {
         get => _title;
@@ -83,7 +75,10 @@ public class MainWindowViewModel : BindableBase
     
     private void OnOpenObserverByGroup()
     {
-        SelectModel = Models[0];
+        //var view = new ReservationObserverByGroupView();
+        //_regionManager.Regions["AddingView"].Add(view);
+        //_regionManager.Regions["AddingView"].Activate(view);
+        _regionManager.RequestNavigate("ContentRegion", "ReservationObserverByGroupView");
         for (int i = 0; i < 4; i++)
         {            
                 Backgrounds[i] = new SolidColorBrush(Colors.White);
@@ -98,7 +93,7 @@ public class MainWindowViewModel : BindableBase
     
     private void OnOpenObserverByTutor()
     {
-        SelectModel = Models[1];
+        _regionManager.RequestNavigate("ContentRegion", "ReservationObserverByTutorView");
         for (int i = 0; i < 4; i++)
         {
             Backgrounds[i] = new SolidColorBrush(Colors.White);
@@ -113,7 +108,7 @@ public class MainWindowViewModel : BindableBase
     
     private void OnOpenObserverByClassroom()
     {
-        SelectModel = Models[2];
+        _regionManager.RequestNavigate("ContentRegion", "ReservationObserverByClassroomView");
         for (int i = 0; i < 4; i++)
         {
             Backgrounds[i] = new SolidColorBrush(Colors.White);
@@ -128,7 +123,7 @@ public class MainWindowViewModel : BindableBase
 
     private void OnOpenObserverGanttChart()
     {
-        SelectModel = Models[3];
+        _regionManager.RequestNavigate("ContentRegion", "ReservationObserverGanttChartView");
         for (int i = 0; i < 4; i++)
         {
             Backgrounds[i] = new SolidColorBrush(Colors.White);

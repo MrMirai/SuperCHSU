@@ -50,6 +50,6 @@
                 </ResourceDictionary>
             </ContentControl.Resources>
         </ContentControl>-->
-
+    <ContentControl Grid.Row="1" prism:RegionManager.RegionName="ContentRegion" BorderBrush="Transparent" Margin="8"/>
     </Grid>
 </Window>

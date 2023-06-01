@@ -11,10 +11,11 @@ using System.Windows.Input;
 using SuperCHSU.MainModule.Models;
 using SuperCHSU.MainModule.DataBase.Repositories;
 using Prism.Commands;
+using Prism.Regions;
 
 namespace SuperCHSU.MainModule.ViewModels;
 
-public class ReservationObserverByTutorViewModel : BindableBase, IModel
+public class ReservationObserverByTutorViewModel : BindableBase, IModel, INavigationAware
 {
     public string Name => "Преподаватель";
     private IRepository<Schedule> _scheduleRepository { get; }
@@ -145,4 +146,16 @@ public class ReservationObserverByTutorViewModel : BindableBase, IModel
         }
     }
 
+    public void OnNavigatedTo(NavigationContext navigationContext)
+    {
+    }
+
+    public bool IsNavigationTarget(NavigationContext navigationContext)
+    {
+        return true;
+    }
+
+    public void OnNavigatedFrom(NavigationContext navigationContext)
+    {
+    }
 }

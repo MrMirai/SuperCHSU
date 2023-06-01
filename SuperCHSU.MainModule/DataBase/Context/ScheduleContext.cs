@@ -9,11 +9,19 @@ public partial class ScheduleContext : DbContext
 {
     public ScheduleContext()
     {
+
+    }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        base.OnConfiguring(optionsBuilder);
+        optionsBuilder.UseSqlite(@"Data Source=D:\\Prog\\C#\\3 CURS\\CSLBWPF\\SuperCHSU.MainModule\\DataBase\\schedule.db");
     }
 
     public ScheduleContext(DbContextOptions<ScheduleContext> options)
         : base(options)
     {
+        Database.EnsureCreated();
     }
 
     public virtual DbSet<Classroom> Classrooms { get; set; }

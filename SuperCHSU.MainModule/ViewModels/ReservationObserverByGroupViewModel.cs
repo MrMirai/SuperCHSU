@@ -11,10 +11,11 @@ using SuperCHSU.MainModule.Models;
 using SuperCHSU.MainModule.ViewModels.Base;
 using Prism.Mvvm;
 using Prism.Commands;
+using Prism.Regions;
 
 namespace SuperCHSU.MainModule.ViewModels;
 
-public class ReservationObserverByGroupViewModel : BindableBase, IModel
+public class ReservationObserverByGroupViewModel : BindableBase, IModel, INavigationAware
 { 
     public string Name => "Группа";
     private readonly IRepository<Schedule>? _scheduleRepository;
@@ -29,10 +30,10 @@ public class ReservationObserverByGroupViewModel : BindableBase, IModel
     public SelectedDatesCollection _dates;
 
 
-    public ReservationObserverByGroupViewModel(IRepository<Schedule> scheduleRepository, IRepository<Group> grouRepository)
+    public ReservationObserverByGroupViewModel(IRepository<Schedule> scheduleRepository, IRepository<Group> groupRepository)
     {
         _scheduleRepository = scheduleRepository;
-        _groupRepository = grouRepository;
+        _groupRepository = groupRepository;
 
         foreach (var item in _groupRepository.Items)
         {
@@ -142,5 +143,18 @@ public class ReservationObserverByGroupViewModel : BindableBase, IModel
                 Data = newSchedules;
             }
         }
+    }
+
+    public void OnNavigatedTo(NavigationContext navigationContext)
+    {
+    }
+
+    public bool IsNavigationTarget(NavigationContext navigationContext)
+    {
+        return true;
+    }
+
+    public void OnNavigatedFrom(NavigationContext navigationContext)
+    {
     }
 }

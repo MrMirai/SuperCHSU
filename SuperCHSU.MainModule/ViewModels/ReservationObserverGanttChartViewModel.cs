@@ -8,10 +8,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
 using Prism.Commands;
+using Prism.Regions;
 
 namespace SuperCHSU.MainModule.ViewModels;
 
-public class ReservationObserverGanttChartViewModel : BindableBase, IModel
+public class ReservationObserverGanttChartViewModel : BindableBase, IModel, INavigationAware
 {
     public string Name => "Диаграмма Ганта";
     private readonly IRepository<Schedule>? _scheduleRepository;
@@ -79,5 +80,18 @@ public class ReservationObserverGanttChartViewModel : BindableBase, IModel
             }
         }
         Rectangles = tempRectangles;
+    }
+
+    public void OnNavigatedTo(NavigationContext navigationContext)
+    {
+    }
+
+    public bool IsNavigationTarget(NavigationContext navigationContext)
+    {
+        return true;
+    }
+
+    public void OnNavigatedFrom(NavigationContext navigationContext)
+    {
     }
 }

@@ -11,7 +11,7 @@
              mc:Ignorable="d"
              xmlns:prism="http://prismlibrary.com/"
              prism:ViewModelLocator.AutoWireViewModel="True"
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="500">
     
     <UserControl.Resources>
         <ResourceDictionary>
@@ -23,7 +23,6 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
-        
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1.7*" MaxWidth="230"/>
             <ColumnDefinition Width="5*"/>

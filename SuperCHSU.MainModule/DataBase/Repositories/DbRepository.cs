@@ -10,8 +10,8 @@ namespace SuperCHSU.MainModule.DataBase.Repositories;
 
 public class DbRepository<T> : IRepository<T> where T : Entity, new()
 {
-    private readonly ScheduleContext _db;
-    private readonly DbSet<T> _set;
+    private ScheduleContext _db;
+    private DbSet<T> _set;
 
     public bool AutoSaveChanges { get; set; } = true;
 

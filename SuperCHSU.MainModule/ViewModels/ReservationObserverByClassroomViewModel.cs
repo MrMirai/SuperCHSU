@@ -12,10 +12,13 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Markup;
 using Prism.Commands;
+using Prism.Regions;
+using SuperCHSU.MainModule.DataBase.Context;
+using SuperCHSU.MainModule.DataBase.Repositories;
 
 namespace SuperCHSU.MainModule.ViewModels;
 
-public class ReservationObserverByClassroomViewModel : BindableBase, IModel
+public class ReservationObserverByClassroomViewModel : BindableBase, IModel, INavigationAware
 {
     public string Name => "Аудитории";
     private readonly IRepository<Schedule>? _scheduleRepository;
@@ -35,11 +38,11 @@ public class ReservationObserverByClassroomViewModel : BindableBase, IModel
         _scheduleRepository = scheduleRepository;
         _classroomRepository = classroomRepository;
 
-        foreach (var item in _classroomRepository.Items)
+        foreach (var item in _classroomRepository.Items.ToList())
         {
             ClassroomCollection.Add(item);
         }
-        var groupedSchedules = scheduleRepository.Items.ToList().GroupBy(x => x.Data);
+        var groupedSchedules = _scheduleRepository.Items.ToList().GroupBy(x => x.Data);
 
         foreach (var group in groupedSchedules)
         {
@@ -143,5 +146,18 @@ public class ReservationObserverByClassroomViewModel : BindableBase, IModel
                 Data = newSchedules;
             }
         }
+    }
+
+    public void OnNavigatedTo(NavigationContext navigationContext)
+    {
+    }
+
+    public bool IsNavigationTarget(NavigationContext navigationContext)
+    {
+        return true;
+    }
+
+    public void OnNavigatedFrom(NavigationContext navigationContext)
+    {
     }
 }

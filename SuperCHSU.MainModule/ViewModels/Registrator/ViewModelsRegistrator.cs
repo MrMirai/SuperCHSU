@@ -1,13 +1,14 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Prism.Ioc;
 
 namespace SuperCHSU.MainModule.ViewModels.Registrator;
 
 public static class ViewModelsRegistrator
 {
-    public static IServiceCollection AddViewModels(this IServiceCollection services) => services
-        .AddSingleton<MainWindowViewModel>()
-        .AddSingleton<ReservationObserverByClassroomViewModel>()
-        .AddSingleton<ReservationObserverByGroupViewModel>()
-        .AddSingleton<ReservationObserverByTutorViewModel>()
-        .AddSingleton<ReservationObserverGanttChartViewModel>();
+    public static IContainerRegistry AddViewModels(this IContainerRegistry services) => services
+        .RegisterSingleton<MainWindowViewModel>()
+        .RegisterSingleton<ReservationObserverByClassroomViewModel>()
+        .RegisterSingleton<ReservationObserverByGroupViewModel>()
+        .RegisterSingleton<ReservationObserverByTutorViewModel>()
+        .RegisterSingleton<ReservationObserverGanttChartViewModel>();
 }

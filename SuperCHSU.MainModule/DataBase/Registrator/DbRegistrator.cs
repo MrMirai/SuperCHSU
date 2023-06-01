@@ -18,5 +18,10 @@ namespace SuperCHSU.MainModule.DataBase.Registrator
             opt.UseSqlite(configuration.GetConnectionString("SQLiteDatabase"));
         })
            .AddRepositories();
+
+        //public static IContainerRegistry AddDatabese(this IContainerRegistry services, IConfiguration configuration) =>
+        //    services.Register<Context.ScheduleContext>(opt =>
+        //        new ScheduleContext(new DbContextOptionsBuilder<ScheduleContext>()
+        //            .UseSqlite(configuration.GetConnectionString("SQLiteDatabase")).Options)).AddRepositories();
     }
 }
