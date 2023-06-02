@@ -12,6 +12,7 @@ using Prism.Regions;
 using SuperCHSU.MainModule.DataBase.Context;
 using SuperCHSU.MainModule.DataBase.Repositories;
 using SuperCHSU.MainModule.Views;
+using SuperCHSU.Shared;
 
 namespace SuperCHSU.MainModule.ViewModels;
 
@@ -78,7 +79,7 @@ public class MainWindowViewModel : BindableBase
         //var view = new ReservationObserverByGroupView();
         //_regionManager.Regions["AddingView"].Add(view);
         //_regionManager.Regions["AddingView"].Activate(view);
-        _regionManager.RequestNavigate("ContentRegion", "ReservationObserverByGroupView");
+        _regionManager.RequestNavigate(RegionNames.ContentRegion, "ReservationObserverByGroupView");
         for (int i = 0; i < 4; i++)
         {            
                 Backgrounds[i] = new SolidColorBrush(Colors.White);
@@ -93,7 +94,7 @@ public class MainWindowViewModel : BindableBase
     
     private void OnOpenObserverByTutor()
     {
-        _regionManager.RequestNavigate("ContentRegion", "ReservationObserverByTutorView");
+        _regionManager.RequestNavigate(RegionNames.ContentRegion, "ReservationObserverByTutorView");
         for (int i = 0; i < 4; i++)
         {
             Backgrounds[i] = new SolidColorBrush(Colors.White);
@@ -108,7 +109,7 @@ public class MainWindowViewModel : BindableBase
     
     private void OnOpenObserverByClassroom()
     {
-        _regionManager.RequestNavigate("ContentRegion", "ReservationObserverByClassroomView");
+        _regionManager.RequestNavigate(RegionNames.ContentRegion, "ReservationObserverByClassroomView");
         for (int i = 0; i < 4; i++)
         {
             Backgrounds[i] = new SolidColorBrush(Colors.White);
@@ -123,7 +124,7 @@ public class MainWindowViewModel : BindableBase
 
     private void OnOpenObserverGanttChart()
     {
-        _regionManager.RequestNavigate("ContentRegion", "ReservationObserverGanttChartView");
+        _regionManager.RequestNavigate(RegionNames.ContentRegion, "ReservationObserverGanttChartView");
         for (int i = 0; i < 4; i++)
         {
             Backgrounds[i] = new SolidColorBrush(Colors.White);

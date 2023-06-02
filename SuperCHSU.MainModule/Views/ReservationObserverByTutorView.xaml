@@ -19,6 +19,7 @@
                 <ResourceDictionary Source="../Images/chsu.xaml"/>
                 <ResourceDictionary Source="../Themes/ButtonStyle.xaml"/>
                 <ResourceDictionary Source="../Themes/ComboBox.xaml"/>
+                <ResourceDictionary Source="../CustomControls/CustomCalendarControl.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>

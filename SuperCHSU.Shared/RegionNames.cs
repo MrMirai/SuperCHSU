@@ -2,8 +2,9 @@ using System;
 
 namespace SuperCHSU.Shared
 {
-    public class RegionNames
+    public static class RegionNames
     {
+        public const string ContentRegion  = "ContentRegion";
 
     }
 }
