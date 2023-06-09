@@ -53,4 +53,10 @@
     <Folder Include="Views\Registrator\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="DataBase\schedule.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
